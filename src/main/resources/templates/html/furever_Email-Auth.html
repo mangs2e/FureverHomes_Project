@@ -12,23 +12,27 @@
 <meta name="keywords" content="bootstrap, bootstrap 4 template, directory listing bootstrap, bootstrap 4 listing, bootstrap listing, bootstrap 4 directory listing template, vector map, leaflet js template, mapbox theme, mapbox template, dashboard, themesberg, user dashboard bootstrap, dashboard bootstrap, ui kit, bootstrap ui kit, premium bootstrap theme" />
 <link rel="canonical" href="https://themesberg.s3.us-east-2.amazonaws.com/public/products/spaces/thumbnail.jpg">
 
-<!-- Fontawesome -->
-<link type="text/css" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"
-        integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Fontawesome -->
+    <link type="text/css" th:href="@{/vendor/'@'fortawesome/fontawesome-free/css/all.min.css}" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"
+            integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<!-- Leaflet JS -->
-<link type="text/css" href="/static/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
+    <!-- Leaflet JS -->
+    <link type="text/css" th:href="@{/vendor/leaflet/dist/leaflet.css}" rel="stylesheet">
 
-<!-- Fancybox -->
-<link rel="stylesheet" href="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <!-- Fancybox -->
+    <link rel="stylesheet" th:href="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.css}">
 
-<!-- VectorMap -->
-<link rel="stylesheet" href="/static/vendor/jqvmap/dist/jqvmap.min.css">
+    <!-- VectorMap -->
+    <link rel="stylesheet" th:href="@{/vendor/jqvmap/dist/jqvmap.min.css}">
 
-<!-- Main CSS -->
-<link type="text/css" href="/static/css/spaces.css" rel="stylesheet">
+    <!-- Main CSS -->
+    <link type="text/css" th:href="@{/css/spaces.css}" rel="stylesheet">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+            integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 </head>
@@ -36,26 +40,32 @@
 <body>
 <main>
     <!-- Section -->
-    <section class="min-vh-100 d-flex align-items-center py-5 py-lg-0" style="background-color: rgb(255, 191, 0);">
+    <section class="min-vh-100 d-flex align-items-center py-5 py-lg-0" th:style="'background-color: rgb(255, 191, 0);'">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 d-flex align-items-center justify-content-center">
                     <div class="signin-inner mt-3 mt-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                        <form action="#">
-                            <!-- Form -->
-                            <div class="form-group">
-                                <label>인증번호</label>
-                                <div class="form-group">
-                                    <div class="input-group mb-4">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>
-                                        </div>
-                                        <input class="form-control" id="email_Token" placeholder="인증번호를 입력해주세요" type="email_Token" aria-label="email_Token" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-block btn-warning">인증하기</button>
-                        </form>
+
+                        <div class="mt-3 mb-3" id="email-auth">
+                            <h4 class="text-center">이메일 인증을 진행하세요</h4>
+                            <button type="button" id="send-btn" class="btn btn-block btn-warning">인증 코드 보내기</button>
+                        </div>
+
+<!--                        <form action="#">-->
+<!--                            &lt;!&ndash; Form &ndash;&gt;-->
+<!--                            <div class="form-group">-->
+<!--                                <label>인증번호</label>-->
+<!--                                <div class="form-group">-->
+<!--                                    <div class="input-group mb-4">-->
+<!--                                        <div class="input-group-prepend">-->
+<!--                                            <span class="input-group-text"><span class="fas fa-unlock-alt"></span></span>-->
+<!--                                        </div>-->
+<!--                                        <input class="form-control" id="email_Token" placeholder="인증번호를 입력해주세요" type="email_Token" aria-label="email_Token" required>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <button type="submit" class="btn btn-block btn-warning">인증하기</button>-->
+<!--                        </form>-->
                     </div>
                 </div>
             </div>
@@ -63,50 +73,53 @@
     </section>
 </main>
 
+<!-- Custom js -->
+<script th:src="@{/js/email.js}"></script>
+
 <!-- Core -->
-<script src="/static/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/static/vendor/popper.js/dist/umd/popper.min.js"></script>
-<script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/static/vendor/headroom.js/dist/headroom.min.js"></script>
-<script src="/static/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script th:src="@{/vendor/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/vendor/popper.js/dist/umd/popper.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/headroom.js/dist/headroom.min.js}"></script>
+<script th:src="@{/vendor/onscreen/dist/on-screen.umd.min.js}"></script>
 
 <!-- NoUISlider -->
-<script src="/static/vendor/nouislider/distribute/nouislider.min.js"></script>
+<script th:src="@{/vendor/nouislider/distribute/nouislider.min.js}"></script>
 
 <!-- Bootstrap Datepicker -->
-<script src="/static/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script th:src="@{/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
 
 <!-- jQuery Waypoints -->
-<script src="/static/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+<script th:src="@{/vendor/waypoints/lib/jquery.waypoints.min.js}"></script>
 
 <!-- Owl acrousel -->
-<script src="/static/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+<script th:src="@{/vendor/owl.carousel/dist/owl.carousel.min.js}"></script>
 
 <!-- Smooth scroll -->
-<script src="/static/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
 
 <!-- Fancybox -->
-<script src="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+<script th:src="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.js}"></script>
 
 <!-- Sticky sidebar -->
-<script src="/static/vendor/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+<script th:src="@{/vendor/sticky-sidebar/dist/sticky-sidebar.min.js}"></script>
 
 <!-- Mapbox & Leaflet.js -->
-<script src="/static/vendor/leaflet/dist/leaflet.js"></script>
+<script th:src="@{/vendor/leaflet/dist/leaflet.js}"></script>
 
 <!-- Chartist -->
-<script src="/static/vendor/chartist/dist/chartist.min.js"></script>
-<script src="/static/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script th:src="@{/vendor/chartist/dist/chartist.min.js}"></script>
+<script th:src="@{/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
 
 <!-- Vector Maps -->
-<script src="/static/vendor/jqvmap/dist/jquery.vmap.min.js"></script>
-<script src="/static/vendor/jqvmap/dist/maps/jquery.vmap.usa.js"></script>
+<script th:src="@{/vendor/jqvmap/dist/jquery.vmap.min.js}"></script>
+<script th:src="@{/vendor/jqvmap/dist/maps/jquery.vmap.usa.js}"></script>
 
 <!-- Sliderform -->
-<script src="/static/js/jquery.slideform.js"></script>
+<script th:src="@{/js/jquery.slideform.js}"></script>
 
 <!-- Spaces custom Javascript -->
-<script src="/static/js/spaces.js"></script>
+<script th:src="@{/js/spaces.js}"></script>
 </body>
 
 </html>

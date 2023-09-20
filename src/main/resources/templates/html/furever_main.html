@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -13,22 +13,22 @@
 <link rel="canonical" href="https://themesberg.s3.us-east-2.amazonaws.com/public/products/spaces/thumbnail.jpg">
 
 <!-- Fontawesome -->
-<link type="text/css" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+<link type="text/css" th:href="@{/vendor/'@'fortawesome/fontawesome-free/css/all.min.css}" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"
         integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Leaflet JS -->
-<link type="text/css" href="/static/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
+<link type="text/css" th:href="@{/vendor/leaflet/dist/leaflet.css}" rel="stylesheet">
 
 <!-- Fancybox -->
-<link rel="stylesheet" href="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+<link rel="stylesheet" th:href="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.css}">
 
 <!-- VectorMap -->
-<link rel="stylesheet" href="/static/vendor/jqvmap/dist/jqvmap.min.css">
+<link rel="stylesheet" th:href="@{/vendor/jqvmap/dist/jqvmap.min.css}">
 
 <!-- Main CSS -->
-<link type="text/css" href="/static/css/spaces.css" rel="stylesheet">
+<link type="text/css" th:href="@{/css/spaces.css}" rel="stylesheet">
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
@@ -36,17 +36,17 @@
 
 <body>
     <main>
-        <section class="min-vh-100 d-flex align-items-center" style="background-color: rgb(255, 191, 0);">
+        <section class="min-vh-100 d-flex align-items-center" th:style="'background-color: rgb(255, 191, 0);'">
             <div class="container2 py-5">
                 <div class="row2 align-items-center justify-content-center justify-content-lg-between">
                     <div class="col-12 col-sm-9 col-md-8 col-lg-6 mb-5 mb-lg-5">
-                        <img src="/static/assets/img/illustrations/2.png" alt="boy illustration"
+                        <img th:src="@{/assets/img/illustrations/2.png}" alt="boy illustration"
                         style="border-radius: 70%; width: 200%; height: auto;">
                     </div>
                     <div class="col-sm-12 col-lg-6">
                         <div class="text-center text-lg-left">
-                            <a class="btn btn-white animate-hover" href="../html/furever_sign-in.html"><span class="fas fa-chevron-left mr-2 pl-1 animate-left-3"></span>로그인</a>
-                            <a class="btn btn-white animate-hover ml-3" href="../html/furever_sign-up.html"><span class="fas fa-chevron-left mr-2 pl-1 animate-left-3"></span>회원가입</a>
+                            <a class="btn btn-white animate-hover" th:href="@{/fureverhomes/signin}"><span class="fas fa-chevron-left mr-2 pl-1 animate-left-3"></span>로그인</a>
+                            <a class="btn btn-white animate-hover ml-3" th:href="@{/fureverhomes/signup}"><span class="fas fa-chevron-left mr-2 pl-1 animate-left-3"></span>회원가입</a>
                         </div>
                     </div>
                 </div>
@@ -55,49 +55,49 @@
     </main>
 
 <!-- Core -->
-<script src="/static/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/static/vendor/popper.js/dist/umd/popper.min.js"></script>
-<script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/static/vendor/headroom.js/dist/headroom.min.js"></script>
-<script src="/static/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script th:src="@{/vendor/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/vendor/popper.js/dist/umd/popper.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/headroom.js/dist/headroom.min.js}"></script>
+<script th:src="@{/vendor/onscreen/dist/on-screen.umd.min.js}"></script>
 
 <!-- NoUISlider -->
-<script src="/static/vendor/nouislider/distribute/nouislider.min.js"></script>
+<script th:src="@{/vendor/nouislider/distribute/nouislider.min.js}"></script>
 
 <!-- Bootstrap Datepicker -->
-<script src="/static/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script th:src="@{/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
 
 <!-- jQuery Waypoints -->
-<script src="/static/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+<script th:src="@{/vendor/waypoints/lib/jquery.waypoints.min.js}"></script>
 
 <!-- Owl acrousel -->
-<script src="/static/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+<script th:src="@{/vendor/owl.carousel/dist/owl.carousel.min.js}"></script>
 
 <!-- Smooth scroll -->
-<script src="/static/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
 
 <!-- Fancybox -->
-<script src="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+<script th:src="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.js}"></script>
 
 <!-- Sticky sidebar -->
-<script src="/static/vendor/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+<script th:src="@{/vendor/sticky-sidebar/dist/sticky-sidebar.min.js}"></script>
 
 <!-- Mapbox & Leaflet.js -->
-<script src="/static/vendor/leaflet/dist/leaflet.js"></script>
+<script th:src="@{/vendor/leaflet/dist/leaflet.js}"></script>
 
 <!-- Chartist -->
-<script src="/static/vendor/chartist/dist/chartist.min.js"></script>
-<script src="/static/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script th:src="@{/vendor/chartist/dist/chartist.min.js}"></script>
+<script th:src="@{/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
 
 <!-- Vector Maps -->
-<script src="/static/vendor/jqvmap/dist/jquery.vmap.min.js"></script>
-<script src="/static/vendor/jqvmap/dist/maps/jquery.vmap.usa.js"></script>
+<script th:src="@{/vendor/jqvmap/dist/jquery.vmap.min.js}"></script>
+<script th:src="@{/vendor/jqvmap/dist/maps/jquery.vmap.usa.js}"></script>
 
 <!-- Sliderform -->
-<script src="/static/js/jquery.slideform.js"></script>
+<script th:src="@{/js/jquery.slideform.js}"></script>
 
 <!-- Spaces custom Javascript -->
-<script src="/static/js/spaces.js"></script>
+<script th:src="@{/js/spaces.js}"></script>
 </body>
 
 </html>

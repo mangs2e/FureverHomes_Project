@@ -24,22 +24,22 @@
     />
 
     <!-- Fontawesome -->
-    <link type="text/css" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/vendor/'@'fortawesome/fontawesome-free/css/all.min.css}" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"
             integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Leaflet JS -->
-    <link type="text/css" href="/static/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
+    <link type="text/css" th:href="@{/vendor/leaflet/dist/leaflet.css}" rel="stylesheet">
 
     <!-- Fancybox -->
-    <link rel="stylesheet" href="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" th:href="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.css}">
 
     <!-- VectorMap -->
-    <link rel="stylesheet" href="/static/vendor/jqvmap/dist/jqvmap.min.css">
+    <link rel="stylesheet" th:href="@{/vendor/jqvmap/dist/jqvmap.min.css}">
 
     <!-- Main CSS -->
-    <link type="text/css" href="/static/css/spaces.css" rel="stylesheet">
+    <link type="text/css" th:href="@{/css/spaces.css}" rel="stylesheet">
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
 
@@ -56,7 +56,7 @@
       <!-- Section -->
       <section
         class="min-vh-100 d-flex align-items-center section-image py-5 py-lg-0"
-        style="background-color: rgb(255, 191, 0);">
+        th:style="'background-color: rgb(255, 191, 0);'">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-12">
@@ -66,7 +66,7 @@
             </div>
             <div class="col-12 d-flex align-items-center justify-content-center">
               <div class="signup-inner mt-3 mt-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                <form action="/members/signup/tutors" method="post">
+                <form id="signUpForm">
                   <!-- Form -->
                   <div class="form-group">
                     <label for="email">이메일
@@ -82,6 +82,7 @@
                       <input
                         class="form-control"
                         id="email"
+                        name="email"
                         placeholder="@E-mail"
                         type="text"
                         aria-label="email adress"
@@ -92,7 +93,7 @@
                   </div>
                   <!-- End of Form -->
                   <div class="form-group">
-                    <label for="password"
+                    <label for="name"
                       >이름<span class="txt-error name" style="padding-left: 10px"></span
                     ></label>
                     <div class="input-group mb-4">
@@ -113,6 +114,7 @@
                       <input
                         class="form-control"
                         id="name"
+                        name="name"
                         placeholder="Name"
                         type="text"
                         aria-label="Name"
@@ -138,6 +140,7 @@
                         <input
                           class="form-control"
                           id="password"
+                          name="password"
                           placeholder="Password"
                           type="password"
                           aria-label="Password"
@@ -148,9 +151,9 @@
                     <!-- End of Form -->
                     <!-- Form -->
                     <div class="form-group">
-                      <label for="password_confirm"
+                      <label for="password-confirm"
                         >비밀번호 확인<span
-                          class="txt-error password_confirm"
+                          class="txt-error password-confirm"
                           style="padding-left: 10px"
                         ></span
                       ></label>
@@ -162,10 +165,10 @@
                         </div>
                         <input
                           class="form-control"
-                          id="password_confirm"
+                          id="password-confirm"
                           placeholder="Confirm password"
                           type="password"
-                          aria-label="Password"
+                          aria-label="Confirm password"
                           required
                         />
                       </div>
@@ -173,14 +176,13 @@
                     <!-- End of Form -->
                     <div class="form-group">
                       <label>성별</label>
-
                       <div class="form-check">
                         <input
                           class="form-check-input"
                           type="radio"
                           name="genderRadios"
                           id="genderRadios1"
-                          value="female"
+                          value="F"
                           checked
                         />
                         <label class="form-check-label mb-4" for="genderRadios1">
@@ -191,9 +193,8 @@
                           type="radio"
                           name="genderRadios"
                           id="genderRadios2"
-                          value="male"
+                          value="M"
                         />
-                        
                         <label class="form-check-label ml-2" for="genderRadios2"> 남성 </label>
                       </div>
 
@@ -205,7 +206,7 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
                             </div>
-                            <input class="form-control datepicker" placeholder="Birth date" type="text" readonly required>
+                            <input class="form-control datepicker" name="birthDate" id="birthDate" placeholder="Birth date" type="text" readonly required>
                     </div>
                     </div>
 
@@ -220,7 +221,7 @@
                       <label class="form-check-label" for="terms">
                         <span class="small"
                           >I agree to the
-                          <a class="text-secondary" href="./terms.html"
+                          <a class="text-secondary" href=""
                             >terms and conditions</a
                           ></span
                         >
@@ -233,12 +234,12 @@
                     >
                       <span class="font-weight-normal">
                         이미 회원이시라면?
-                        <a href="./furever_sign-in.html" class="font-weight-bold">로그인</a>
+                        <a th:href="@{/fureverhomes/signin}" class="font-weight-bold">로그인</a>
                       </span>
                     </div>
                   </div>
                   <button
-                    type="submit"
+                    type="button"
                     class="btn btn-block btn-warning"
                     id="createAccount"
                   >
@@ -252,51 +253,52 @@
       </section>
     </main>
 
-<!--    <script src="../assets/js/signup-tutors.js"></script>-->
+    <!-- Custom js -->
+    <script th:src="@{/js/validate.js}"></script>
 
     <!-- Core -->
-    <script src="/static/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="/static/vendor/popper.js/dist/umd/popper.min.js"></script>
-    <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/static/vendor/headroom.js/dist/headroom.min.js"></script>
-    <script src="/static/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+    <script th:src="@{/vendor/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/vendor/popper.js/dist/umd/popper.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/vendor/headroom.js/dist/headroom.min.js}"></script>
+    <script th:src="@{/vendor/onscreen/dist/on-screen.umd.min.js}"></script>
 
     <!-- NoUISlider -->
-    <script src="/static/vendor/nouislider/distribute/nouislider.min.js"></script>
+    <script th:src="@{/vendor/nouislider/distribute/nouislider.min.js}"></script>
 
     <!-- Bootstrap Datepicker -->
-    <script src="/static/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script th:src="@{/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
 
     <!-- jQuery Waypoints -->
-    <script src="/static/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script th:src="@{/vendor/waypoints/lib/jquery.waypoints.min.js}"></script>
 
     <!-- Owl acrousel -->
-    <script src="/static/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script th:src="@{/vendor/owl.carousel/dist/owl.carousel.min.js}"></script>
 
     <!-- Smooth scroll -->
-    <script src="/static/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
 
     <!-- Fancybox -->
-    <script src="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script th:src="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.js}"></script>
 
     <!-- Sticky sidebar -->
-    <script src="/static/vendor/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+    <script th:src="@{/vendor/sticky-sidebar/dist/sticky-sidebar.min.js}"></script>
 
     <!-- Mapbox & Leaflet.js -->
-    <script src="/static/vendor/leaflet/dist/leaflet.js"></script>
+    <script th:src="@{/vendor/leaflet/dist/leaflet.js}"></script>
 
     <!-- Chartist -->
-    <script src="/static/vendor/chartist/dist/chartist.min.js"></script>
-    <script src="/static/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script th:src="@{/vendor/chartist/dist/chartist.min.js}"></script>
+    <script th:src="@{/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
 
     <!-- Vector Maps -->
-    <script src="/static/vendor/jqvmap/dist/jquery.vmap.min.js"></script>
-    <script src="/static/vendor/jqvmap/dist/maps/jquery.vmap.usa.js"></script>
+    <script th:src="@{/vendor/jqvmap/dist/jquery.vmap.min.js}"></script>
+    <script th:src="@{/vendor/jqvmap/dist/maps/jquery.vmap.usa.js}"></script>
 
     <!-- Sliderform -->
-    <script src="/static/js/jquery.slideform.js"></script>
+    <script th:src="@{/js/jquery.slideform.js}"></script>
 
     <!-- Spaces custom Javascript -->
-    <script src="/static/js/spaces.js"></script>
+    <script th:src="@{/js/spaces.js}"></script>
   </body>
 </html>
