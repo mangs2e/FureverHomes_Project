@@ -20,7 +20,7 @@ public class Member {
     @Column(name = "MEMBER_ID")
     private Long id; //pk
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String email; //회원 아이디
 
     @Column(nullable = false)
@@ -39,22 +39,25 @@ public class Member {
     @Column(nullable = false)
     private LocalDate regi_date = LocalDate.now(); //가입날짜
 
-    @Column(nullable = false, columnDefinition = "TINYINT(1)")
-    @ColumnDefault("false")
-    private Boolean email_auth; //이메일 인증여부
+    @Column(nullable = false)
+    private int email_auth; //이메일 인증여부
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(name = "INTEREST_ANIMAL",
             joinColumns = @JoinColumn(name = "MEMBER_ID"), inverseJoinColumns = @JoinColumn(name = "ANIMAL_ID"))
     private List<Animal> animals = new ArrayList<>(); //연관관계 매핑 - 관심동물 (다대다 단방향일듯)
 
     @Builder
-    public Member(String email, String password, String name, Sex sex, LocalDate birth, Boolean email_auth) {
+    public Member(String email, String password, String name, Sex sex, LocalDate birth, int email_auth) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.sex = sex;
         this.birth = birth;
         this.email_auth = email_auth;
+    }
+
+    public void updateEmailAuth(int authCode) {
+        this.email_auth = authCode;
     }
 }

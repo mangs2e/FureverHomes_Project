@@ -1,5 +1,6 @@
-package com.example.fureverhomes_project.repository;
+package com.example.fureverhomes_project.service;
 
+import com.example.fureverhomes_project.dto.MailDTO;
 import com.example.fureverhomes_project.dto.MemberReqDto;
 import com.example.fureverhomes_project.entity.enumClass.Sex;
 import com.example.fureverhomes_project.service.MemberService;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
@@ -23,6 +25,9 @@ class MemberServiceTest {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @Autowired
+    JavaMailSender mailSender;
+
     public MemberReqDto createMemberTest1() {
         MemberReqDto memberReqDto = new MemberReqDto();
         memberReqDto.setEmail("test1@test.com");
@@ -31,6 +36,12 @@ class MemberServiceTest {
         memberReqDto.setPassword("test123");
         memberReqDto.setSex(Sex.M);
         return memberReqDto;
+    }
+
+    public MailDTO createMail() {
+        MailDTO mailDTO = new MailDTO();
+        mailDTO.setEmail("d@test.com");
+        return mailDTO;
     }
 
 
@@ -52,13 +63,8 @@ class MemberServiceTest {
 
         //중복 이메일로 다시 회원가입 시 (이전 정보를 지우고 다시 회원정보 저장)
         boolean isDuplicate = memberService.isDuplicateMember(member1.getEmail());
-        if (isDuplicate) {
-            //1. 중복되는 이메일이 있을 때 이메일 인증 여부를 확인 - false여야만 함
-            boolean isEmailAuth = memberService.checkEmailAuth(member1.getEmail());
-            assertFalse(isEmailAuth);
-            System.out.println("이전 가입 정보 삭제!");
-        }
-        //2. 새로운 회원 정보 저장
+        assertFalse(isDuplicate);
+        //새로운 회원 정보 저장
         Long newMember = memberService.saveMember(member1);
         assertNotNull(newMember);
     }
