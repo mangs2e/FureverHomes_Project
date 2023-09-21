@@ -133,9 +133,8 @@ $(document).ready(function() {
                 let email = btoa(data);
                 sessionStorage.setItem("email", email);
                 alert("성공! 이메일 인증해주셈");
-                // history.replaceState({}, null, location.pathname);
-                // window.location.href = "/html/furever_Email-Auth.html";
-                location.replace("/fureverhomes/signup/emailAuth");
+                // location.replace("/fureverhomes/signup/emailAuth");
+                location.href ="/fureverhomes/signup/emailAuth";
             },
             error: function (data, textStatus) {
                 alert("이미 존재하는 회원입니다. 로그인을 진행해주세요.")
