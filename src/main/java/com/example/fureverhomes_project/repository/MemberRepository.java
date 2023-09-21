@@ -1,5 +1,6 @@
 package com.example.fureverhomes_project.repository;
 
+import com.example.fureverhomes_project.dto.MemberResDto;
 import com.example.fureverhomes_project.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -17,5 +18,4 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     //회원 정보 삭제
     void deleteByEmail(String email);
 
-    //이메일 인증 - 2. 비교 후 1로 변경
 }

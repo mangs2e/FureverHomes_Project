@@ -39,4 +39,10 @@ public class MemberReqDto {
                 .email_auth(0)
                 .build();
     }
+
+    public Member updatePwd(String password) {
+        return Member.builder()
+                .password(password)
+                .build();
+    }
 }

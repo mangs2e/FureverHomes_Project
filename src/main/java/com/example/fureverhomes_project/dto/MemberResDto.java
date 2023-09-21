@@ -18,7 +18,7 @@ public class MemberResDto {
     private Sex sex; //성별
     private LocalDate birth; //생년월일
     private LocalDate regi_date; //가입날짜
-    private Boolean email_auth; //이메일 인증여부
+    private int email_auth; //이메일 인증여부
     private List<Animal> animals; //관심동물
 
     public void clearPassword() {

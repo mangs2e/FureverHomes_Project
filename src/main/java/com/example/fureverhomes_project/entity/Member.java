@@ -60,4 +60,8 @@ public class Member {
     public void updateEmailAuth(int authCode) {
         this.email_auth = authCode;
     }
+
+    public void updatePassword(String password) {
+        this.password = password;
+    }
 }
