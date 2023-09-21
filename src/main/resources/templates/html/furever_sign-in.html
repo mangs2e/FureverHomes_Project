@@ -24,24 +24,31 @@
     />
 
     <!-- Fontawesome -->
-    <link type="text/css" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/vendor/'@'fortawesome/fontawesome-free/css/all.min.css}" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"
             integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Leaflet JS -->
-    <link type="text/css" href="/static/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
+    <link type="text/css" th:href="@{/vendor/leaflet/dist/leaflet.css}" rel="stylesheet">
 
     <!-- Fancybox -->
-    <link rel="stylesheet" href="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" th:href="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.css}">
 
     <!-- VectorMap -->
-    <link rel="stylesheet" href="/static/vendor/jqvmap/dist/jqvmap.min.css">
+    <link rel="stylesheet" th:href="@{/vendor/jqvmap/dist/jqvmap.min.css}">
 
     <!-- Main CSS -->
-    <link type="text/css" href="/static/css/spaces.css" rel="stylesheet">
+    <link type="text/css" th:href="@{/css/spaces.css}" rel="stylesheet">
 
     <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.4.js"
+            integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+            crossorigin="anonymous"
+    ></script>
+
   </head>
 
   <body>
@@ -49,7 +56,7 @@
       <!-- Section -->
       <section
         class="min-vh-100 d-flex align-items-center section-image py-5 py-lg-0"
-        style="background-color: rgb(255, 191, 0);">
+        th:style="'background-color: rgb(255, 191, 0);'">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-12">
@@ -59,7 +66,7 @@
             </div>
             <div class="col-12 d-flex align-items-center justify-content-center">
               <div class="signin-inner mt-3 mt-lg-0 bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
-                <form action="#">
+                <form>
                   <!-- Form -->
                   <div class="form-group">
                     <label for="email">이메일</label>
@@ -73,8 +80,9 @@
                         class="form-control"
                         id="email"
                         placeholder="@E-mail"
-                        type="text"
+                        type="email"
                         aria-label="email address"
+                        required
                       />
                     </div>
                   </div>
@@ -100,13 +108,13 @@
                       </div>
                     </div>
                     <!-- End of Form -->
-                    <div id="lostpassword" style="text-align: right">
+                    <div id="lostpassword" th:style="'text-align: right'">
                       <div>
-                        <a href="./furever_password-find.html" class="font-weight-bold small text-right">비밀번호 찾기</a>
+                        <a th:href="@{/fureverhomes/signin/findPassword}" class="font-weight-bold small text-right">비밀번호 찾기</a>
                       </div>
                     </div>
                   </div>
-                  <button type="submit" class="btn btn-block btn-warning">로그인</button>
+                  <button type="button" id="signin" class="btn btn-block btn-warning">로그인</button>
                 </form>
               </div>
             </div>
@@ -115,49 +123,52 @@
       </section>
     </main>
 
+    <!-- Custom js -->
+    <script th:src="@{/js/signin.js}"></script>
+
     <!-- Core -->
-    <script src="/static/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="/static/vendor/popper.js/dist/umd/popper.min.js"></script>
-    <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="/static/vendor/headroom.js/dist/headroom.min.js"></script>
-    <script src="/static/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+    <script th:src="@{/vendor/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/vendor/popper.js/dist/umd/popper.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/vendor/headroom.js/dist/headroom.min.js}"></script>
+    <script th:src="@{/vendor/onscreen/dist/on-screen.umd.min.js}"></script>
 
     <!-- NoUISlider -->
-    <script src="/static/vendor/nouislider/distribute/nouislider.min.js"></script>
+    <script th:src="@{/vendor/nouislider/distribute/nouislider.min.js}"></script>
 
     <!-- Bootstrap Datepicker -->
-    <script src="/static/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script th:src="@{/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
 
     <!-- jQuery Waypoints -->
-    <script src="/static/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+    <script th:src="@{/vendor/waypoints/lib/jquery.waypoints.min.js}"></script>
 
     <!-- Owl acrousel -->
-    <script src="/static/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script th:src="@{/vendor/owl.carousel/dist/owl.carousel.min.js}"></script>
 
     <!-- Smooth scroll -->
-    <script src="/static/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
 
     <!-- Fancybox -->
-    <script src="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <script th:src="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.js}"></script>
 
     <!-- Sticky sidebar -->
-    <script src="/static/vendor/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+    <script th:src="@{/vendor/sticky-sidebar/dist/sticky-sidebar.min.js}"></script>
 
     <!-- Mapbox & Leaflet.js -->
-    <script src="/static/vendor/leaflet/dist/leaflet.js"></script>
+    <script th:src="@{/vendor/leaflet/dist/leaflet.js}"></script>
 
     <!-- Chartist -->
-    <script src="/static/vendor/chartist/dist/chartist.min.js"></script>
-    <script src="/static/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script th:src="@{/vendor/chartist/dist/chartist.min.js}"></script>
+    <script th:src="@{/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
 
     <!-- Vector Maps -->
-    <script src="/static/vendor/jqvmap/dist/jquery.vmap.min.js"></script>
-    <script src="/static/vendor/jqvmap/dist/maps/jquery.vmap.usa.js"></script>
+    <script th:src="@{/vendor/jqvmap/dist/jquery.vmap.min.js}"></script>
+    <script th:src="@{/vendor/jqvmap/dist/maps/jquery.vmap.usa.js}"></script>
 
     <!-- Sliderform -->
-    <script src="/static/js/jquery.slideform.js"></script>
+    <script th:src="@{/js/jquery.slideform.js}"></script>
 
     <!-- Spaces custom Javascript -->
-    <script src="/static/js/spaces.js"></script>
+    <script th:src="@{/js/spaces.js}"></script>
   </body>
 </html>
