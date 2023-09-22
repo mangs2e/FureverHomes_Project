@@ -142,12 +142,11 @@ public class MemberService {
     }
 
     //비밀번호 재설정 링크 전송
-    public Boolean sendLinkMail(@RequestBody MailDTO mailDTO) throws MessagingException {
+    public Boolean sendLinkMail(final @RequestBody MailDTO mailDTO) throws MessagingException {
         String email = mailDTO.getEmail();
 
         Member member = memberRepository.findByEmail(email);
-        System.out.println(member.toString());
-        if (member != null) {
+        if (member != null && member.getEmail_auth() == 1) {
             return sendMail(email);
         } return null;
     }
@@ -171,9 +170,7 @@ public class MemberService {
         helper.setTo(email);
         helper.setSubject("fureverhomes 비밀번호 재설정 안내");
         helper.setText(mailContent, true);
-
-        System.out.println("[message] "+ message);
-
+        
         try {
             mailSender.send(message);
             System.out.println("이메일 전송 성공");
@@ -185,10 +182,11 @@ public class MemberService {
     }
 
     //링크 만료 시간 체크
-    public Long getLinkExpirationMap(String linkId) {
+    public Long getLinkExpirationMap(final String linkId) {
         return linkExpirationMap.get(linkId);
     }
 
+    //비밀번호 변경
     @Transactional
     public Boolean changePassword(final Map<String, String> mapParam) {
         String email = mapParam.get("email");

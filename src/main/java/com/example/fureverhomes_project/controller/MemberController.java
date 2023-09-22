@@ -136,6 +136,7 @@ public class MemberController {
             } return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
+        //비밀번호 변경하기
         @PostMapping("/signin/change.post")
         public ResponseEntity<Object> changePassword(@RequestBody Map<String,String> mapParam, HttpServletRequest request) {
             HttpSession session = request.getSession();
