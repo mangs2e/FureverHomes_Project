@@ -1,5 +1,6 @@
 package com.example.fureverhomes_project.entity;
 
+import com.example.fureverhomes_project.entity.enumClass.Region;
 import com.example.fureverhomes_project.entity.enumClass.Sex;
 import com.example.fureverhomes_project.entity.enumClass.Species;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -27,13 +29,22 @@ public class Animal {
     private Sex sex; //성별
 
     @Column(columnDefinition = "TINYINT(1)")
-    private Boolean nueter; //중성화 여부
+    private Boolean neuter; //중성화 여부
 
-    @Column(nullable = false)
+    @Column(nullable = false    )
     private String name; //동물 이름
+
+    private int age; //나이
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Region region; //보호 지역
 
     @Lob
     private String health_condition; //건강상태
+
+    @Lob
+    private String personality; //성격
 
     @Column(nullable = false, columnDefinition = "VARCHAR(255) DEFAULT 'default.jpg'")
     private String picture; //동물 사진
@@ -42,5 +53,8 @@ public class Animal {
     private String shelter_name; //보호소 이름
 
     private String shelter_tel; //보호소 연락처
+
+    @Column(nullable = false)
+    private LocalDate regiDate = LocalDate.now(); //등록날짜
 
 }
