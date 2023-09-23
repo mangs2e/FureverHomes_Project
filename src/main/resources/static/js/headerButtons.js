@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-    $('#signOut').click(function() {
+    $('#signOut-btn').click(function() {
         $.ajax({
             type: "POST",
             url: "/fureverhomes/signout.post",
@@ -13,5 +13,4 @@ $(document).ready(function () {
             }
         })
     });
-
 });

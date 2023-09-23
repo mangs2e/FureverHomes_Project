@@ -15,40 +15,45 @@
     <link rel="canonical" href="https://themesberg.s3.us-east-2.amazonaws.com/public/products/spaces/thumbnail.jpg"/>
 
     <!-- Fontawesome -->
-    <link type="text/css" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/vendor/'@'fortawesome/fontawesome-free/css/all.min.css}" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"
             integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Leaflet JS -->
-    <link type="text/css" href="/static/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
+    <link type="text/css" th:href="@{/vendor/leaflet/dist/leaflet.css}" rel="stylesheet">
 
     <!-- Fancybox -->
-    <link rel="stylesheet" href="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" th:href="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.css}">
 
     <!-- VectorMap -->
-    <link rel="stylesheet" href="/static/vendor/jqvmap/dist/jqvmap.min.css">
+    <link rel="stylesheet" th:href="@{/vendor/jqvmap/dist/jqvmap.min.css}">
 
     <!-- Main CSS -->
-    <link type="text/css" href="/static/css/spaces.css" rel="stylesheet">
+    <link type="text/css" th:href="@{/css/spaces.css}" rel="stylesheet">
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.js"
-            integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.4.js"
+            integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+            crossorigin="anonymous"
+    ></script>
+
 </head>
 <header>
-    <section style="padding: 0px; height: 500px" class="section bg-warning overlay-white pb-4 pb-md-7">
+    <section th:style="'padding: 0px; height: 500px'" class="section bg-warning overlay-white pb-4 pb-md-7">
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark"
-             style="padding-top: 25px; padding-bottom: 25px">
+             th:style="'padding-top: 25px; padding-bottom: 25px'">
             <div class="container position-relative">
-                <a class="navbar-brand mr-lg-3" href="../html/furever_search.html">
-                    <img class="navbar-brand-dark" style="width: 150px; height: auto;" src="/static/assets/img/illustrations/2_backgroundDelete.png"
+                <a class="navbar-brand mr-lg-3" th:href="@{/fureverhomes/main}">
+                    <img class="navbar-brand-dark" th:style="'width: 150px; height: auto;'" th:src="@{/assets/img/illustrations/2_backgroundDelete.png}"
                          alt="menuimage"/>
                 </a>
                 <div>
                     <button class="btn mb-2 mr-2 btn-warning" type="button" id="mypage-btn">마이페이지</button>
-                    <button class="btn mb-2 mr-2 btn-warning" type="button" id="mypage-btn">입양 후 이야기</button>
-                    <button class="btn mb-2 mr-2 btn-warning" type="button" id="sign-btn">로그아웃</button>
+                    <button class="btn mb-2 mr-2 btn-warning" type="button" id="board-btn">입양 후 이야기</button>
+                    <button class="btn mb-2 mr-2 btn-warning" type="button" id="signOut-btn">로그아웃</button>
                 </div>
             </div>
         </nav>
@@ -68,9 +73,9 @@
     </section>
 </header>
 
-<body style="min-height: 100vh">
+<body th:style="'min-height: 100vh'">
 <main>
-    <div class="section section-lg pt-5" style="min-height: 100vh">
+    <div class="section section-lg pt-5" th:style="'min-height: 100vh'">
         <div class="container">
             <div class="row">
                 <div class="col-8 col-lg-8 mt-4">
@@ -102,64 +107,55 @@
                              aria-labelledby="nav-introduce-tab">
                             <h6 id="introduce_content"></h6>
                             <!--시작-->
-                            <form class="ml-3" id="signInForm">
+                            <form class="ml-3">
                                 <div class="row">
                                     <div class="col-sm-12 mb-3">
                                         <div class="form-group">
-                                            <label for="name">성격
-                                                <span class="txt-error name"
-                                                      style="padding-left:10px; font-size:13px;"></span>
+                                            <label for="personality">성격
                                             </label>
-                                            <input class="form-control" id="name" type="text" value="사람 좋아함" readonly>
+                                            <input class="form-control" id="personality" type="text" value="" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row align-items-center">
                                     <div class="col-sm-12 mb-3">
                                         <div class="form-group">
-                                            <label for="email">건강상태<span class="txt-error email"
-                                                                          style="padding-left:10px; font-size:13px;"></span></label>
-                                            <input class="form-control" id="email" type="text"
-                                                   value="양호함" readonly>
+                                            <label for="health-condition">건강상태</label>
+                                            <input class="form-control" id="health-condition" type="text"
+                                                   value="" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 mb-3">
                                         <div class="form-group">
-                                            <label for="name">중성화 여부
-                                                <span class="txt-error name"
-                                                      style="padding-left:10px; font-size:13px;"></span>
+                                            <label for="neuter">중성화 여부
                                             </label>
-                                            <input class="form-control" id="name" type="text" value="중성화 완료" readonly>
+                                            <input class="form-control" id="neuter" type="text" value="" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 mb-3">
                                         <div class="form-group">
-                                            <label for="name">보호소 이름
-                                                <span class="txt-error name"
-                                                      style="padding-left:10px; font-size:13px;"></span>
+                                            <label for="shelter-name">보호소 이름
                                             </label>
-                                            <input class="form-control" id="name" type="text" value="해피니스" readonly>
+                                            <input class="form-control" id="shelter-name" type="text" value="" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 mb-3">
                                         <div class="form-group">
-                                            <label for="name">보호소 전화번호
-                                                <span class="txt-error name"
-                                                      style="padding-left:10px; font-size:13px;"></span>
+                                            <label for="shelter-tel">보호소 전화번호
                                             </label>
-                                            <input class="form-control" id="name" type="text" value="055-366-9877" readonly>
+                                            <input class="form-control" id="shelter-tel" type="text" value="" readonly>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mt-3">
                                     <button type="button" class="btn btn-warning" data-toggle="modal"
-                                    data-target="#modal-default" style="float: right">
+                                    data-target="#modal-default" th:style="'float: right'">
                                 관심동물 등록
                                     </button>
                                 </div>
@@ -355,26 +351,21 @@
 
                 <!-- End of tab -->
                 <aside class="col-4 col-md-4 mt-6">
-                    <div class="card border-light text-center" style="box-shadow: none">
-                        <div class="profile-thumbnail mx-auto pt-5">
-                            <img src="/static/assets/img/team/profile-picture-3.jpg" class="card-img-top rounded-circle border-0"
-                                 alt="Joseph Portrait" id="profile-img"/>
+                    <div class="card border-light text-center" th:style="'box-shadow: none'">
+                        <div class="profile-thumbnail mx-auto pt-5" id="profile-img">
+<!--                            <img src="/static/assets/img/team/profile-picture-3.jpg" class="card-img-top rounded-circle border-0"-->
+<!--                                 alt="Joseph Portrait" id="profile-img"/>-->
                         </div>
                         <div class="card-body">
-                            <h2 class="h4 card-title mt-6 mb-3" id="tutor-name">예삐</h2>
-                            <div class="card-subtitle mb-3 text-gray font-weight-normal">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="gray" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                </svg>
-                                <span class="h6">10</span>
+                            <h2 class="h4 card-title mt-6 mb-3" id="animal-name">예삐</h2>
+                            <div class="card-subtitle mb-3 text-gray font-weight-normal" id = "animal-sex">
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="gray" class="bi bi-gender-female" viewBox="0 0 16 16">-->
+<!--                                    <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>-->
+<!--                                </svg>-->
+                                <span class="h6" id="age">10</span>
                             </div>
                             <span class="fas fa-map-marker-alt"></span>
-                            <span id="tutor-nation">부산</span>
-                            <!-- <div class="my-3">
-                                <span class="badge badge-pill badge-primary ml-2" id="first-interest">#</span>
-                                <span class="badge badge-pill badge-primary ml-2" id="second-interest">#</span>
-                            </div> -->
-
+                            <span id="animal-region">부산</span>
                         </div>
                     </div>
                 </aside>
@@ -388,8 +379,8 @@
     <div class="container">
         <div class="row mt-6 text-center">
             <div class="col-12 col-xl-6 mb-5 mb-xl-0">
-                <img style="min-height: 60px; color: RGB(207, 209, 218);" src="/static/assets/img/illustrations/2_backgroundDelete.png"
-                     height="50" class="mb-3" alt="Spaces logo">
+                <img th:style="'min-height: 60px; color: RGB(207, 209, 218);'" th:src="@{/assets/img/illustrations/2_backgroundDelete.png}"
+                     height="50" class="mb-3" alt="fureverhomes logo">
                 <p>Newstopic English <br>Conversation Service</p>
             </div>
             <div class="col-12 col-xl-6 mb-5 mb-xl-0">
@@ -407,7 +398,7 @@
                 </a>
                 <button class="btn btn-sm btn-black">
                     <a href="https://fortunate-jitterbug-838.notion.site/cb1516898d3e4575821fa274d6cb8e2c">
-                        <img src="/assets/img/notion-icon.png" alt="notion-icon" width="35" height="35">
+                        <img src="" alt="notion-icon" width="35" height="35">
                     </a>
                 </button>
             </div>
@@ -415,13 +406,13 @@
         <hr class="my-3 my-lg-2">
         <div class="text-center">
             <ul>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="https://fortunate-jitterbug-838.notion.site/160876db65df40979b37edb109a9694e">개인정보처리방침</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="#">서비스소개</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="https://fortunate-jitterbug-838.notion.site/92a7e1d4d2e642fc9cbeac5c5ebcb4c2">이용약관</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="https://fortunate-jitterbug-838.notion.site/cbbd0eb370cd435d84b23c30140f22d7">광고상표소개</a></span></li>
             </ul>
         </div>
@@ -439,54 +430,55 @@
     </div>
 </footer>
 
-<!-- TOPICSATION Custom Javascript -->
-<!--<script type="module" src="/js/move.js" charset="UTF-8"></script>-->
-<!--<script src="/js/tutor-detail-view-calendar.js" charset="UTF-8"></script>-->
+
+<!-- Custom js -->
+<script th:src="@{/js/headerButtons.js}"></script>
+<script th:src="@{/js/adopt.js}"></script>
 
 <!-- Core -->
-<script src="/static/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/static/vendor/popper.js/dist/umd/popper.min.js"></script>
-<script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/static/vendor/headroom.js/dist/headroom.min.js"></script>
-<script src="/static/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script th:src="@{/vendor/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/vendor/popper.js/dist/umd/popper.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/headroom.js/dist/headroom.min.js}"></script>
+<script th:src="@{/vendor/onscreen/dist/on-screen.umd.min.js}"></script>
 
 <!-- NoUISlider -->
-<script src="/static/vendor/nouislider/distribute/nouislider.min.js"></script>
+<script th:src="@{/vendor/nouislider/distribute/nouislider.min.js}"></script>
 
 <!-- Bootstrap Datepicker -->
-<script src="/static/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script th:src="@{/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
 
 <!-- jQuery Waypoints -->
-<script src="/static/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+<script th:src="@{/vendor/waypoints/lib/jquery.waypoints.min.js}"></script>
 
 <!-- Owl acrousel -->
-<script src="/static/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+<script th:src="@{/vendor/owl.carousel/dist/owl.carousel.min.js}"></script>
 
 <!-- Smooth scroll -->
-<script src="/static/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
 
 <!-- Fancybox -->
-<script src="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+<script th:src="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.js}"></script>
 
 <!-- Sticky sidebar -->
-<script src="/static/vendor/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+<script th:src="@{/vendor/sticky-sidebar/dist/sticky-sidebar.min.js}"></script>
 
 <!-- Mapbox & Leaflet.js -->
-<script src="/static/vendor/leaflet/dist/leaflet.js"></script>
+<script th:src="@{/vendor/leaflet/dist/leaflet.js}"></script>
 
 <!-- Chartist -->
-<script src="/static/vendor/chartist/dist/chartist.min.js"></script>
-<script src="/static/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script th:src="@{/vendor/chartist/dist/chartist.min.js}"></script>
+<script th:src="@{/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
 
 <!-- Vector Maps -->
-<script src="/static/vendor/jqvmap/dist/jquery.vmap.min.js"></script>
-<script src="/static/vendor/jqvmap/dist/maps/jquery.vmap.usa.js"></script>
+<script th:src="@{/vendor/jqvmap/dist/jquery.vmap.min.js}"></script>
+<script th:src="@{/vendor/jqvmap/dist/maps/jquery.vmap.usa.js}"></script>
 
 <!-- Sliderform -->
-<script src="/static/js/jquery.slideform.js"></script>
+<script th:src="@{/js/jquery.slideform.js}"></script>
 
 <!-- Spaces custom Javascript -->
-<script src="/static/js/spaces.js"></script>
+<script th:src="@{/js/spaces.js}"></script>
 
 </body>
 </html>

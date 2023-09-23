@@ -46,20 +46,19 @@
 <body>
 <main>
     <!-- Hero -->
-    <section style="padding: 0px; height: 500px;"
-             class="section section-image bg-warning overlay-white text-white pb-3 pb-md-6"
-             data-background="../assets/img/hero-1.jpg">
+    <section th:style="'padding: 0px; height: 500px;'"
+             class="section bg-warning overlay-white text-white pb-3 pb-md-6">
         <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark "
-             style="padding-top: 25px; padding-bottom: 25px;">
+             th:style="'padding-top: 25px; padding-bottom: 25px;'">
             <div class="container position-relative">
-                <a class="navbar-brand mr-lg-3" href="/main">
-                    <img class="navbar-brand-dark" style="width: 100px; height: auto;" src="/static/assets/img/illustrations/2_sizeUp.png"
+                <a class="navbar-brand mr-lg-3" th:href="@{/fureverhomes/main}">
+                    <img class="navbar-brand-dark" th:style="'width: 100px; height: auto;'" th:src="@{/assets/img/illustrations/2_sizeUp.png}"
                          alt="menuimage">
                 </a>
                 <div>
                     <button class="btn mb-2 mr-2 btn-warning" type="button" id="mypage-btn">마이페이지</button>
-                    <button class="btn mb-2 mr-2 btn-warning" type="button" id="mypage-btn">입양 후 이야기</button>
-                    <button class="btn mb-2 mr-2 btn-warning" type="button" id="signOut">로그아웃</button>
+                    <button class="btn mb-2 mr-2 btn-warning" type="button" id="board-btn">입양 후 이야기</button>
+                    <button class="btn mb-2 mr-2 btn-warning" type="button" id="signOut-btn">로그아웃</button>
                 </div>
             </div>
         </nav>
@@ -67,19 +66,19 @@
             <div class="container section-image overlay-soft text-dark rounded px-lg-5 py-6 overflow-hidden position-relative border border-light shadow-sm">
                 <div class="row no-gutters justify-content-between align-items-center">
                     <div class="col-12 order-lg-2">
-                        <h1 class="h2 mb-4" style="color: black;">동물 검색</h1>
+                        <h1 class="h2 mb-4" th:style="'color: black;'">동물 검색</h1>
                         <div class="card p-md-2 mb-3">
                             <div class="card-body p-2 p-md-0">
                                 <form autocomplete="off" class="row justify-content-between" method="get" id="search-form">
                                     <div class="col-12 col-lg-4 pr-lg-1">
                                         <div class="form-group form-group-lg mb-lg-0">
                                             <div class="input-group">
-                                                <select class="form-control" id="" name="">
-                                                    <option value="select animal" disabled selected style="display:none">동물 선택
+                                                <select class="form-control" id="species" name="species">
+                                                    <option value="species" disabled selected th:style="'display:none'">동물 선택
                                                     </option>
                                                     <option value="dog">강아지</option>
                                                     <option value="cat">고양이</option>
-                                                    <option value="other">기타</option>
+                                                    <option value="others">기타</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -87,11 +86,11 @@
                                     <div class="col-12 col-lg-4 pr-lg-1">
                                         <div class="form-group form-group-lg mb-lg-0">
                                             <div class="input-group">
-                                                <select class="form-control" id="search-interest" name="interest">
-                                                    <option value="" disabled selected style="display:none">성별
+                                                <select class="form-control" id="sex" name="gender">
+                                                    <option value="sex" disabled selected th:style="'display:none'">성별
                                                     </option>
-                                                    <option value="business">여아</option>
-                                                    <option value="tech">남아</option>
+                                                    <option value="F">암컷</option>
+                                                    <option value="M">수컷</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -99,29 +98,29 @@
                                     <div class="col-12 col-lg-3 px-lg-1">
                                         <div class="form-group form-group-lg mb-lg-0">
                                             <div class="input-group">
-                                                <select class="form-control" id="" name="">
-                                                    <option value="" disabled selected style="display:none">지역
+                                                <select class="form-control" id="region" name="region">
+                                                    <option value="region" disabled selected th:style="'display:none'">지역
                                                     </option>
-                                                    <option value="business">서울</option>
-                                                    <option value="tech">인천</option>
-                                                    <option value="tech">대전</option>
-                                                    <option value="tech">대구</option>
-                                                    <option value="tech">울산</option>
-                                                    <option value="tech">부산</option>
-                                                    <option value="tech">광주</option>
-                                                    <option value="tech">세종</option>
-                                                    <option value="tech">경기도</option>
-                                                    <option value="tech">강원도</option>
-                                                    <option value="tech">충청도</option>
-                                                    <option value="tech">경상도</option>
-                                                    <option value="tech">전라도</option>
-                                                    <option value="tech">제주도</option>
+                                                    <option value="SEOUL">서울</option>
+                                                    <option value="INCHEON">인천</option>
+                                                    <option value="DAEJEON">대전</option>
+                                                    <option value="DAEGU">대구</option>
+                                                    <option value="ULSAN">울산</option>
+                                                    <option value="BUSAN">부산</option>
+                                                    <option value="GWANGJU">광주</option>
+                                                    <option value="SEJONG">세종</option>
+                                                    <option value="GYEONGGI">경기도</option>
+                                                    <option value="GANGWON">강원도</option>
+                                                    <option value="CHUNGCHEONG">충청도</option>
+                                                    <option value="GYEONGSANG">경상도</option>
+                                                    <option value="JEOLLA">전라도</option>
+                                                    <option value="JEJU">제주도</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-1 pl-lg-1">
-                                        <button class="btn btn-block btn-lg btn-warning" type="submit" id="mypage-btn">
+                                        <button class="btn btn-block btn-lg btn-warning" type="submit" id="search-btn">
                                             <span class="icon icon-sm">
                                             <span class="fa-solid fa-paw fa-lg"></span>
                                         </span></button>
@@ -143,43 +142,43 @@
                 </div>
             </div>
             <!--시작-->
-            <div class="row" id="tutor-card">
-            <div class="col-12 col-md-6 mb-3"> <!--div1-->
-                <a href="../html/furever_detail.html">
-                    <div class="card border-light mb-4 animate-up-5"> <!--div2-->
-                        <div class="row no-gutters align-items-center"> <!--div3-->
-                            <div class="col-12 col-lg-6 col-xl-4"> <!--div4-->
-                                <img class="card-img p-2 rounded-xl" style="object-fit: cover; width: 100%; height: 230px;"
-                                src="/static/assets/img/team/profile-picture-2.jpg" alt="">
-                            </div>
-                        <div class="col-12 col-lg-6 col-xl-8"> <!--div5-->
-                            <div class="card-body"> <!--div6-->
-                                <div class="mb-3"> <!--div7-->
-                                    <span class="h5 mb-3">예삐</span> <!--span1-->
-                                    <span style="float: right"> <!--heartspan-->
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="gray" class="bi bi-gender-female" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>
-                                        </svg>
-                                        <span class="h6 mb-3">10</span> <!--span2-->
-                                    </span>
-                                </div>
+            <div class="row" id="animal-card">
+<!--            <div class="col-12 col-md-6 mb-3"> &lt;!&ndash;div1&ndash;&gt;-->
+<!--                <a th:href="@{/fureverhomes/detail}"> &lt;!&ndash;a1&ndash;&gt;-->
+<!--                    <div class="card border-light mb-4 animate-up-5"> &lt;!&ndash;div2&ndash;&gt;-->
+<!--                        <div class="row no-gutters align-items-center"> &lt;!&ndash;div3&ndash;&gt;-->
+<!--                            <div class="col-12 col-lg-6 col-xl-4"> &lt;!&ndash;div4&ndash;&gt;-->
+<!--                                <img class="card-img p-2 rounded-xl" th:style="'object-fit: cover; width: 100%; height: 230px;'"-->
+<!--                                th:src="@{/assets/img/animal/2.jpg}" alt="animal-picture">-->
+<!--                            </div>-->
+<!--                        <div class="col-12 col-lg-6 col-xl-8"> &lt;!&ndash;div5&ndash;&gt;-->
+<!--                            <div class="card-body"> &lt;!&ndash;div6&ndash;&gt;-->
+<!--                                <div class="mb-3"> &lt;!&ndash;div7&ndash;&gt;-->
+<!--                                    <span class="h5 mb-3">예삐</span> &lt;!&ndash;span1&ndash;&gt;-->
+<!--                                    <span th:style="'float: right'"> &lt;!&ndash;heartspan&ndash;&gt;-->
+<!--                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="gray" class="bi bi-gender-female" viewBox="0 0 16 16">-->
+<!--                                            <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>-->
+<!--                                        </svg>-->
+<!--                                        <span class="h6 mb-3">10</span> &lt;!&ndash;span2&ndash;&gt;-->
+<!--                                    </span>-->
+<!--                                </div>-->
 
-                                <div class="mt-2" style="color:#424767"> <!--div8 -->
-                                    <span class="fas fa-map-marker-alt mr-2"></span> <!--span3-->
-                                    <span>nationality</span> <!--span4-->
-                                </div>
+<!--                                <div class="mt-2" th:style="'color:#424767'"> &lt;!&ndash;div8 &ndash;&gt;-->
+<!--                                    <span class="fas fa-map-marker-alt mr-2"></span> &lt;!&ndash;span3&ndash;&gt;-->
+<!--                                    <span>nationality</span> &lt;!&ndash;span4&ndash;&gt;-->
+<!--                                </div>-->
 
 
-                                <!-- <div class="d-flex my-3"> div9 -->
-                                    <!-- <span class="badge badge-pill badge-primary ml-2">interest1</span> span5 -->
-                                    <!-- <span class="badge badge-pill badge-primary ml-2">interest2</span> span5 -->
-                                <!-- </div> -->
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
+<!--                                &lt;!&ndash; <div class="d-flex my-3"> div9 &ndash;&gt;-->
+<!--                                    &lt;!&ndash; <span class="badge badge-pill badge-primary ml-2">interest1</span> span5 &ndash;&gt;-->
+<!--                                    &lt;!&ndash; <span class="badge badge-pill badge-primary ml-2">interest2</span> span5 &ndash;&gt;-->
+<!--                                &lt;!&ndash; </div> &ndash;&gt;-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </div>-->
             </div>
             <!--끝-->
             <div class="col mt-3 d-flex justify-content-center">
@@ -196,8 +195,8 @@
     <div class="container">
         <div class="row mt-6 text-center">
             <div class="col-12 col-xl-6 mb-5 mb-xl-0">
-                <img style="min-height: 60px; color: RGB(207, 209, 218);" src="/static/assets/img/illustrations/2_backgroundDelete.png"
-                     height="50" class="mb-3" alt="Spaces logo">
+                <img th:style="'min-height: 60px; color: RGB(207, 209, 218);'" th:src="@{/assets/img/illustrations/2_backgroundDelete.png}"
+                     height="50" class="mb-3" alt="fureverhomes logo">
                 <p>Newstopic English <br>Conversation Service</p>
             </div>
             <div class="col-12 col-xl-6 mb-5 mb-xl-0">
@@ -215,7 +214,7 @@
                 </a>
                 <button class="btn btn-sm btn-black">
                     <a href="https://fortunate-jitterbug-838.notion.site/cb1516898d3e4575821fa274d6cb8e2c">
-                        <img src="/assets/img/notion-icon.png" alt="notion-icon" width="35" height="35">
+                        <img src="" alt="notion-icon" width="35" height="35">
                     </a>
                 </button>
             </div>
@@ -223,13 +222,13 @@
         <hr class="my-3 my-lg-2">
         <div class="text-center">
             <ul>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="https://fortunate-jitterbug-838.notion.site/160876db65df40979b37edb109a9694e">개인정보처리방침</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="#">서비스소개</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="https://fortunate-jitterbug-838.notion.site/92a7e1d4d2e642fc9cbeac5c5ebcb4c2">이용약관</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="https://fortunate-jitterbug-838.notion.site/cbbd0eb370cd435d84b23c30140f22d7">광고상표소개</a></span></li>
             </ul>
         </div>
@@ -249,6 +248,7 @@
 
 <!-- Custom js -->
 <script th:src="@{/js/headerButtons.js}"></script>
+<script th:src="@{/js/search.js}"></script>
 
 <!-- Core -->
 <script th:src="@{/vendor/jquery/dist/jquery.min.js}"></script>
