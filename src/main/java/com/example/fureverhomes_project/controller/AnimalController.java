@@ -1,14 +1,18 @@
 package com.example.fureverhomes_project.controller;
 
+import com.example.fureverhomes_project.dto.AnimalPageDTO;
+import com.example.fureverhomes_project.dto.AnimalResDTO;
 import com.example.fureverhomes_project.service.AnimalSearchService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -36,16 +40,21 @@ public class AnimalController {
 
         //동물 목록 조회
         @GetMapping("/animal.list")
-        public ResponseEntity<String> getAnimalList() {
-            String animals = animalService.selectListByRegiDate();
+        public ResponseEntity<AnimalPageDTO> getAnimalList(
+                @RequestParam Map<String, String> requestParams, Pageable pageRequest
+                ) {
+            System.out.println("컨트롤러 접근 성공!");
+            Sort sort = Sort.by(Sort.Order.desc("regiDate")); // 필요한 정렬을 여기에 추가
+            Pageable pageable = PageRequest.of(pageRequest.getPageNumber() - 1, pageRequest.getPageSize(), sort);
+            AnimalPageDTO animals = animalService.searchAnimal(requestParams, pageable);
             if(animals == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
             return ResponseEntity.ok(animals);
         }
 
         //동물 상세 정보 조회
         @GetMapping("/detail/{animal_id}/getDetail")
-        public ResponseEntity<String> getDetail(@PathVariable("animal_id") Long animalId) {
-            String animal = animalService.animalDetail(animalId);
+        public ResponseEntity<AnimalResDTO> getDetail(@PathVariable("animal_id") Long animalId) {
+            AnimalResDTO animal = animalService.animalDetail(animalId);
             if(animal == null) return ResponseEntity.internalServerError().build();
             return ResponseEntity.ok(animal);
         }
