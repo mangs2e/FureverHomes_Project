@@ -24,15 +24,6 @@ public class AnimalResDTO {
     private LocalDate regiDate; //등록날짜
     private String personality; //성격
 
-    public AnimalResDTO(Long id, String name, Region region, Sex sex, int age, String picture) {
-        this.id = id;
-        this.name = name;
-        this.region = region;
-        this.sex = sex;
-        this.age = age;
-        this.picture = picture;
-    }
-
     public AnimalResDTO(Long id, String name, Region region, Sex sex, int age, String picture, Boolean neuter, String health_condition, String shelter_name, String shelter_tel, LocalDate regiDate, String personality) {
         this.id = id;
         this.name = name;

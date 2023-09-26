@@ -69,16 +69,16 @@
                         <h1 class="h2 mb-4" th:style="'color: black;'">동물 검색</h1>
                         <div class="card p-md-2 mb-3">
                             <div class="card-body p-2 p-md-0">
-                                <form autocomplete="off" class="row justify-content-between" method="get" id="search-form">
+                                <form class="row justify-content-between" method="get" id="search-form">
                                     <div class="col-12 col-lg-4 pr-lg-1">
                                         <div class="form-group form-group-lg mb-lg-0">
                                             <div class="input-group">
                                                 <select class="form-control" id="species" name="species">
                                                     <option value="species" disabled selected th:style="'display:none'">동물 선택
                                                     </option>
-                                                    <option value="dog">강아지</option>
-                                                    <option value="cat">고양이</option>
-                                                    <option value="others">기타</option>
+                                                    <option value="DOG">강아지</option>
+                                                    <option value="CAT">고양이</option>
+                                                    <option value="OTHERS">기타</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -143,42 +143,6 @@
             </div>
             <!--시작-->
             <div class="row" id="animal-card">
-<!--            <div class="col-12 col-md-6 mb-3"> &lt;!&ndash;div1&ndash;&gt;-->
-<!--                <a th:href="@{/fureverhomes/detail}"> &lt;!&ndash;a1&ndash;&gt;-->
-<!--                    <div class="card border-light mb-4 animate-up-5"> &lt;!&ndash;div2&ndash;&gt;-->
-<!--                        <div class="row no-gutters align-items-center"> &lt;!&ndash;div3&ndash;&gt;-->
-<!--                            <div class="col-12 col-lg-6 col-xl-4"> &lt;!&ndash;div4&ndash;&gt;-->
-<!--                                <img class="card-img p-2 rounded-xl" th:style="'object-fit: cover; width: 100%; height: 230px;'"-->
-<!--                                th:src="@{/assets/img/animal/2.jpg}" alt="animal-picture">-->
-<!--                            </div>-->
-<!--                        <div class="col-12 col-lg-6 col-xl-8"> &lt;!&ndash;div5&ndash;&gt;-->
-<!--                            <div class="card-body"> &lt;!&ndash;div6&ndash;&gt;-->
-<!--                                <div class="mb-3"> &lt;!&ndash;div7&ndash;&gt;-->
-<!--                                    <span class="h5 mb-3">예삐</span> &lt;!&ndash;span1&ndash;&gt;-->
-<!--                                    <span th:style="'float: right'"> &lt;!&ndash;heartspan&ndash;&gt;-->
-<!--                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="gray" class="bi bi-gender-female" viewBox="0 0 16 16">-->
-<!--                                            <path fill-rule="evenodd" d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z"/>-->
-<!--                                        </svg>-->
-<!--                                        <span class="h6 mb-3">10</span> &lt;!&ndash;span2&ndash;&gt;-->
-<!--                                    </span>-->
-<!--                                </div>-->
-
-<!--                                <div class="mt-2" th:style="'color:#424767'"> &lt;!&ndash;div8 &ndash;&gt;-->
-<!--                                    <span class="fas fa-map-marker-alt mr-2"></span> &lt;!&ndash;span3&ndash;&gt;-->
-<!--                                    <span>nationality</span> &lt;!&ndash;span4&ndash;&gt;-->
-<!--                                </div>-->
-
-
-<!--                                &lt;!&ndash; <div class="d-flex my-3"> div9 &ndash;&gt;-->
-<!--                                    &lt;!&ndash; <span class="badge badge-pill badge-primary ml-2">interest1</span> span5 &ndash;&gt;-->
-<!--                                    &lt;!&ndash; <span class="badge badge-pill badge-primary ml-2">interest2</span> span5 &ndash;&gt;-->
-<!--                                &lt;!&ndash; </div> &ndash;&gt;-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </a>-->
-<!--            </div>-->
             </div>
             <!--끝-->
             <div class="col mt-3 d-flex justify-content-center">
