@@ -1,17 +1,17 @@
 package com.example.fureverhomes_project.entity;
 
 import com.example.fureverhomes_project.entity.enumClass.AdoptStatus;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.example.fureverhomes_project.entity.enumClass.Sex;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Getter
 @ToString
-@Setter
+@NoArgsConstructor
 public class Adopt {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,8 +38,7 @@ public class Adopt {
     private String job; //직업
 
     @Column(nullable = false, columnDefinition = "TINYINT(1)", name = "BREEDING_EXP")
-    @ColumnDefault("false")
-    private String breeding; //동물 길러본 경험
+    private Boolean breeding; //동물 길러본 경험
 
     @Lob
     @Column(nullable = false)
@@ -54,4 +53,18 @@ public class Adopt {
 
     @Lob
     private String cancel_reason; //입양 취소 이유
+
+    @Builder
+    public Adopt(Member member, Animal animal, String phonenum, String contact_time, String residence, String job, Boolean breeding, String adopt_reason, String add_comment, AdoptStatus adopt_status) {
+        this.member = member;
+        this.animal = animal;
+        this.phonenum = phonenum;
+        this.contact_time = contact_time;
+        this.residence = residence;
+        this.job = job;
+        this.breeding = breeding;
+        this.adopt_reason = adopt_reason;
+        this.add_comment = add_comment;
+        this.adopt_status = adopt_status;
+    }
 }
