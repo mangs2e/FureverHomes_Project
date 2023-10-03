@@ -15,48 +15,52 @@
     <link rel="canonical" href="https://themesberg.s3.us-east-2.amazonaws.com/public/products/spaces/thumbnail.jpg">
 
     <!-- Fontawesome -->
-    <link type="text/css" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+    <link type="text/css" th:href="@{/vendor/'@'fortawesome/fontawesome-free/css/all.min.css}" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"
             integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- Leaflet JS -->
-    <link type="text/css" href="/static/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
+    <link type="text/css" th:href="@{/vendor/leaflet/dist/leaflet.css}" rel="stylesheet">
 
     <!-- Fancybox -->
-    <link rel="stylesheet" href="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+    <link rel="stylesheet" th:href="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.css}">
 
     <!-- VectorMap -->
-    <link rel="stylesheet" href="/static/vendor/jqvmap/dist/jqvmap.min.css">
+    <link rel="stylesheet" th:href="@{/vendor/jqvmap/dist/jqvmap.min.css}">
 
     <!-- Main CSS -->
-    <link type="text/css" href="/static/css/spaces.css" rel="stylesheet">
+    <link type="text/css" th:href="@{/css/spaces.css}" rel="stylesheet">
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.js"
+    <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
+    <script
+            src="https://code.jquery.com/jquery-3.6.4.js"
             integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"
+    ></script>
 </head>
 
-<body style="min-height: 100vh;">
-<section style="padding: 0px; height: 50px;"
+<body th:style="'min-height: 100vh;'">
+<section th:style="'padding: 0px; height: 50px;'"
          class="section bg-warning overlay-white text-white pb-4 pb-md-7">
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark "
-         style="padding-top: 25px; padding-bottom: 25px;">
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark"
+         th:style="'padding-top: 25px; padding-bottom: 25px;'">
         <div class="container position-relative">
-            <a class="navbar-brand mr-lg-3" href="/main">
-                <img class="navbar-brand-dark" style="width: 100px; height: auto;" src="/static/assets/img/illustrations/2_backgroundDelete.png"
-                     alt="menuimage">
+            <a class="navbar-brand mr-lg-3" th:href="@{/fureverhomes/main}">
+                <img class="navbar-brand-dark" th:style="'width: 150px; height: auto;'" th:src="@{/assets/img/illustrations/2_backgroundDelete.png}"
+                     alt="menuimage"/>
             </a>
             <div>
-                <button class="btn mb-2 mr-2 btn-warning" type="button" id="mypage-btn">입양 후 이야기</button>
+                <a class="btn mb-2 mr-2 btn-warning" type="button" id="adopt-btn" th:href="@{/fureverhomes/animal}">입양하기</a>
+                <a class="btn mb-2 mr-2 btn-warning" type="button" id="board-btn" th:href="@{/fureverhomes/board}">입양 후 이야기</a>
                 <button class="btn mb-2 mr-2 btn-warning" type="button" id="sign-btn">로그아웃</button>
             </div>
         </div>
     </nav>
 </section>
 <main>
-    <div class="section section-lg bg-soft" style="min-height: 100vh;">
+    <div class="section section-lg bg-soft" th:style="'min-height: 100vh;'">
         <div class="container">
             <div class="row pt-5 pt-md-0">
                 <div class="col-12 col-md-4 d-none d-lg-block">
@@ -64,11 +68,11 @@
                     <div class="card border-light p-2">
                         <div class="card-body p-2">
                             <div class="list-group dashboard-menu list-group-sm mt-4">
-                                <a id="schedule" href="../dashboard/furever_myPage_adopt.html"
+                                <a id="adopt" th:href="@{/fureverhomes/mypage/adopt}"
                                    class="d-flex list-group-item list-group-item-action">입양 신청 상태<span
                                         class="icon icon-xs ml-auto"><span
                                         class="fas fa-chevron-right"></span></span> </a>
-                                <a id="history" href="../dashboard/furever_myPage_Interest.html"
+                                <a id="interest" th:href="@{/fureverhomes/mypage/interest}"
                                    class="d-flex list-group-item list-group-item-action active">관심 동물 조회<span
                                         class="icon icon-xs ml-auto"><span
                                         class="fas fa-chevron-right"></span></span> </a>
@@ -84,20 +88,45 @@
                                 <form>
                                     <table class="table">
                                         <thead>
-                                        <tr style="text-align: center">
+                                        <tr th:style="'text-align: center'">
                                             <th scope="col">#</th>
                                             <th scope="col">이름</th>
                                             <th scope="col">상세정보</th>
+                                            <th scope="col">관심취소</th>
                                         </tr>
                                         </thead>
-                                        <tbody id="tutee-history">
-                                            <tr style="padding: 0;">
-                                                <th style="text-align:center; vertical-align:middle;" scope="row">1</th>
-                                                <td style="text-align:center; vertical-align:middle; padding: 1;">dd</td>
-                                                <td style="text-align:center; vertical-align:middle; padding: 1;">
-                                                    <a href="../furever_detail.html" style="color: gray;">정보 확인하고 입양하러 가기</a>
-                                                </td>
-                                            </tr>
+                                        <tbody id="interest-list">
+                                        <!--모달 시작-->
+                                        <div class="modal fade" id="modal-default-3" tabindex="-1"
+                                             role="dialog" aria-labelledby="modal-default"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered"
+                                                 role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h6 class="modal-title">관심취소</h6>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form>
+                                                            <div class="mb-3 form-group">
+                                                                관심을 취소하시겠습니까?
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" id="interest-cancel"
+                                                                class="btn btn-sm btn-warning">
+                                                            취소
+                                                        </button>
+                                                        <button type="button"
+                                                                class="btn btn-link text-danger ml-auto"
+                                                                data-dismiss="modal" id="reset">
+                                                            닫기
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         </tbody>
                                     </table>
                                 </form>
@@ -113,8 +142,8 @@
     <div class="container">
         <div class="row mt-6 text-center">
             <div class="col-12 col-xl-6 mb-5 mb-xl-0">
-                <img style="min-height: 60px; color: RGB(207, 209, 218);" src="/static/assets/img/illustrations/2_backgroundDelete.png"
-                     height="50" class="mb-3" alt="Spaces logo">
+                <img th:style="'min-height: 60px; color: RGB(207, 209, 218);'" th:src="@{/assets/img/illustrations/2_backgroundDelete.png}"
+                     height="50" class="mb-3" alt="fureverhomes logo">
                 <p>Newstopic English <br>Conversation Service</p>
             </div>
             <div class="col-12 col-xl-6 mb-5 mb-xl-0">
@@ -132,7 +161,7 @@
                 </a>
                 <button class="btn btn-sm btn-black">
                     <a href="https://fortunate-jitterbug-838.notion.site/cb1516898d3e4575821fa274d6cb8e2c">
-                        <img src="/assets/img/notion-icon.png" alt="notion-icon" width="35" height="35">
+                        <img src="" alt="notion-icon" width="35" height="35">
                     </a>
                 </button>
             </div>
@@ -140,13 +169,13 @@
         <hr class="my-3 my-lg-2">
         <div class="text-center">
             <ul>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="https://fortunate-jitterbug-838.notion.site/160876db65df40979b37edb109a9694e">개인정보처리방침</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="#">서비스소개</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="https://fortunate-jitterbug-838.notion.site/92a7e1d4d2e642fc9cbeac5c5ebcb4c2">이용약관</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
+                <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
                         href="https://fortunate-jitterbug-838.notion.site/cbbd0eb370cd435d84b23c30140f22d7">광고상표소개</a></span></li>
             </ul>
         </div>
@@ -164,54 +193,54 @@
     </div>
 </footer>
 
+<!-- Custom js -->
+<script th:src="@{/js/headerButtons.js}"></script>
+<script th:src="@{/js/mypage-interest.js}"></script>
+
 <!-- Core -->
-<script src="/static/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/static/vendor/popper.js/dist/umd/popper.min.js"></script>
-<script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/static/vendor/headroom.js/dist/headroom.min.js"></script>
-<script src="/static/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+<script th:src="@{/vendor/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/vendor/popper.js/dist/umd/popper.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/headroom.js/dist/headroom.min.js}"></script>
+<script th:src="@{/vendor/onscreen/dist/on-screen.umd.min.js}"></script>
 
 <!-- NoUISlider -->
-<script src="/static/vendor/nouislider/distribute/nouislider.min.js"></script>
+<script th:src="@{/vendor/nouislider/distribute/nouislider.min.js}"></script>
 
 <!-- Bootstrap Datepicker -->
-<script src="/static/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script th:src="@{/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
 
 <!-- jQuery Waypoints -->
-<script src="/static/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+<script th:src="@{/vendor/waypoints/lib/jquery.waypoints.min.js}"></script>
 
 <!-- Owl acrousel -->
-<script src="/static/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+<script th:src="@{/vendor/owl.carousel/dist/owl.carousel.min.js}"></script>
 
 <!-- Smooth scroll -->
-<script src="/static/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+<script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
 
 <!-- Fancybox -->
-<script src="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+<script th:src="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.js}"></script>
 
 <!-- Sticky sidebar -->
-<script src="/static/vendor/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+<script th:src="@{/vendor/sticky-sidebar/dist/sticky-sidebar.min.js}"></script>
 
 <!-- Mapbox & Leaflet.js -->
-<script src="/static/vendor/leaflet/dist/leaflet.js"></script>
+<script th:src="@{/vendor/leaflet/dist/leaflet.js}"></script>
 
 <!-- Chartist -->
-<script src="/static/vendor/chartist/dist/chartist.min.js"></script>
-<script src="/static/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<script th:src="@{/vendor/chartist/dist/chartist.min.js}"></script>
+<script th:src="@{/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
 
 <!-- Vector Maps -->
-<script src="/static/vendor/jqvmap/dist/jquery.vmap.min.js"></script>
-<script src="/static/vendor/jqvmap/dist/maps/jquery.vmap.usa.js"></script>
+<script th:src="@{/vendor/jqvmap/dist/jquery.vmap.min.js}"></script>
+<script th:src="@{/vendor/jqvmap/dist/maps/jquery.vmap.usa.js}"></script>
 
 <!-- Sliderform -->
-<script src="/static/js/jquery.slideform.js"></script>
+<script th:src="@{/js/jquery.slideform.js}"></script>
 
 <!-- Spaces custom Javascript -->
-<script src="/static/js/spaces.js"></script>
-
-<!-- TOPICSATION Custom Javascript -->
-<!-- <script type="module" src="/js/myPage-tutees_CourseHistory.js"></script>
-<script type="module" src="/js/move.js"></script> -->
+<script th:src="@{/js/spaces.js}"></script>
 
 </body>
 
