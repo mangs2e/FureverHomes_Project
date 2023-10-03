@@ -14,7 +14,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 
         //1.세션에서 회원 정보 조회
         HttpSession session = request.getSession();
-        Long member = (Long) session.getAttribute("longinMember");
+        Long member = (Long) session.getAttribute("loginMember");
 
         //2. 만료시 로그인 페이지로 이동
         if (member == null) {

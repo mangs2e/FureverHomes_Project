@@ -107,7 +107,7 @@ public class MemberController {
             //2. 세션에 회원 정보 저장 & 만료 시간 설정
             if (loginMember != null) {
                 HttpSession session = request.getSession();
-                session.setAttribute("longinMember", loginMember);
+                session.setAttribute("loginMember", loginMember);
                 session.setMaxInactiveInterval(60 * 30); //30분
                 return ResponseEntity.ok().build();
             }
