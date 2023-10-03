@@ -122,6 +122,7 @@ $(document).ready(function (){
             async: false,
             success: function (data, status) {
                 alert("등록됐습니다. 마이페이지를 확인해주세요.")
+                location.reload();
             },
             error: function (data, textStatus) {
                 alert("이미 신청된 내역입니다. 마이페이지를 확인해주세요.")

@@ -2,7 +2,6 @@ package com.example.fureverhomes_project.service;
 
 import com.example.fureverhomes_project.dto.MailDTO;
 import com.example.fureverhomes_project.dto.MemberReqDto;
-import com.example.fureverhomes_project.dto.MemberResDto;
 import com.example.fureverhomes_project.entity.Member;
 import com.example.fureverhomes_project.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

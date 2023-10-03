@@ -13,8 +13,6 @@ import static com.example.fureverhomes_project.entity.QAnimal.animal;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
@@ -101,9 +99,7 @@ public class AnimalSearchService {
         Optional<Animal> animalOptional = animalRepository.findById(animalId);
         if (animalOptional.isPresent()) {
             Animal animal = animalOptional.get();
-            AnimalResDTO animalResDTO = converToResDTO(animal);
-
-            return animalResDTO;
+            return converToResDTO(animal);
         } else {
             return null;
         }
