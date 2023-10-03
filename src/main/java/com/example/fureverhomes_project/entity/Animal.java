@@ -9,6 +9,8 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -56,5 +58,8 @@ public class Animal {
 
     @Column(nullable = false)
     private LocalDate regiDate = LocalDate.now(); //등록날짜
+
+    @OneToMany(mappedBy = "animal")
+    private Set<Interest> interests = new HashSet<>();
 
 }

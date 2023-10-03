@@ -7,7 +7,9 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -42,10 +44,8 @@ public class Member {
     @Column(nullable = false)
     private int email_auth; //이메일 인증여부
 
-    @ManyToMany
-    @JoinTable(name = "INTEREST_ANIMAL",
-            joinColumns = @JoinColumn(name = "MEMBER_ID"), inverseJoinColumns = @JoinColumn(name = "ANIMAL_ID"))
-    private List<Animal> animals = new ArrayList<>(); //연관관계 매핑 - 관심동물 (다대다 단방향일듯)
+    @OneToMany(mappedBy = "member")
+    private Set<Interest> interests = new HashSet<>();
 
     @Builder
     public Member(String email, String password, String name, Sex sex, LocalDate birth, int email_auth) {

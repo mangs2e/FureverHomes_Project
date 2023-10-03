@@ -51,6 +51,9 @@ public class Adopt {
     @Column(nullable = false)
     private AdoptStatus adopt_status; //입양 신청 상태
 
+    @Column(nullable = false)
+    private LocalDate applicationDate = LocalDate.now(); //신청 날짜
+
     @Lob
     private String cancel_reason; //입양 취소 이유
 
@@ -66,5 +69,10 @@ public class Adopt {
         this.adopt_reason = adopt_reason;
         this.add_comment = add_comment;
         this.adopt_status = adopt_status;
+    }
+
+    public void updateCancelReason(String cancel_reason) {
+        this.cancel_reason = cancel_reason;
+        this.adopt_status = AdoptStatus.CANCEL;
     }
 }
