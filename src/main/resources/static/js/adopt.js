@@ -75,7 +75,7 @@ $(document).ready(function (){
             success: function (data, status) {
             },
             error: function (data, textStatus) {
-                alert("이미 등록된 동물입니다.")
+                alert("이미 등록된 동물입니다. 취소하려면 마이페이지에서 해주세요.")
             }
         });
     });
@@ -83,18 +83,21 @@ $(document).ready(function (){
     $("#adopt-btn").click(function () {
 
         if (!telCheck) {
-            alert("모달창을 닫고 입력형식을 확인해주세요.");
-            $("#modal-default-2").hide();
+            alert("입력형식을 확인해주세요.");
+            $("#modal-default-2").modal('hide');
+            $("#phonenum").focus();
             return false;
         }
         if (!contactTimeCheck) {
-            alert("모달창을 닫고 입력형식을 확인해주세요.");
-            $("#modal-default-2").hide();
+            alert("입력형식을 확인해주세요.");
+            $("#modal-default-2").modal('hide');
+            $("#contact_time").focus();
             return false;
         }
         if (!jobCheck) {
-            alert("모달창을 닫고 입력형식을 확인해주세요.");
-            $("#modal-default-2").hide();
+            alert("입력형식을 확인해주세요.");
+            $("#modal-default-2").modal('hide');
+            $("#job").focus();
             return false;
         }
 

@@ -54,6 +54,7 @@ public class AdoptService {
     }
 
     //입양 취소 변경하기
+    @Transactional
     public void putAdopt(Map<String, String> params) {
         String cancel_reason = params.get("reason");
         Long adopt_id = Long.valueOf(params.get("adoptId"));
