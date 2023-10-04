@@ -58,6 +58,7 @@ public class AdoptService {
     public void putAdopt(Map<String, String> params) {
         String cancel_reason = params.get("reason");
         Long adopt_id = Long.valueOf(params.get("adoptId"));
+        System.out.println(cancel_reason+", "+adopt_id);
         Adopt adopt = adoptRepository.findById(adopt_id).orElseThrow(() -> new EntityNotFoundException("Adopt 객체가 없음"));
         adopt.updateCancelReason(cancel_reason);
         adoptRepository.save(adopt);

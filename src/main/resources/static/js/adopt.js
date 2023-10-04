@@ -84,20 +84,20 @@ $(document).ready(function (){
 
         if (!telCheck) {
             alert("입력형식을 확인해주세요.");
-            $("#modal-default-2").modal('hide');
             $("#phonenum").focus();
+            $("#modal-default-2").modal('hide');
             return false;
         }
         if (!contactTimeCheck) {
             alert("입력형식을 확인해주세요.");
-            $("#modal-default-2").modal('hide');
             $("#contact_time").focus();
+            $("#modal-default-2").modal('hide');
             return false;
         }
         if (!jobCheck) {
             alert("입력형식을 확인해주세요.");
-            $("#modal-default-2").modal('hide');
             $("#job").focus();
+            $("#modal-default-2").modal('hide');
             return false;
         }
 
@@ -129,6 +129,7 @@ $(document).ready(function (){
             },
             error: function (data, textStatus) {
                 alert("이미 신청된 내역입니다. 마이페이지를 확인해주세요.")
+                location.reload();
             }
         });
     });
