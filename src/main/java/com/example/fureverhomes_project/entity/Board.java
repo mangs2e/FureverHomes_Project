@@ -1,17 +1,14 @@
 package com.example.fureverhomes_project.entity;
 
 import com.example.fureverhomes_project.entity.superClass.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString
-@Setter
+@NoArgsConstructor
 public class Board extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +26,15 @@ public class Board extends BaseEntity {
     @Column(nullable = false)
     private String content; //게시판 글
 
-    @Column(nullable = false, columnDefinition = "int default 0")
+    @Column(nullable = false)
     private int views; //조회수
+
+    @Builder
+    public Board(Member member, String title, String content, int views) {
+        this.member = member;
+        this.title = title;
+        this.content = content;
+        this.views = views;
+    }
 
 }
