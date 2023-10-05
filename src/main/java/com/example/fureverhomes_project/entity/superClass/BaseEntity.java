@@ -1,5 +1,7 @@
 package com.example.fureverhomes_project.entity.superClass;
 
+import lombok.Getter;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
@@ -12,4 +14,8 @@ public abstract class BaseEntity {
 
     @Column(name = "MODI_DATE")
     private LocalDateTime modifiedTime; //수정일
+
+    public LocalDateTime getUploadDate() {
+        return this.createdTime;
+    }
 }

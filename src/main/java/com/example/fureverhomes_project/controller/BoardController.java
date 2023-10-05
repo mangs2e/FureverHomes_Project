@@ -1,13 +1,16 @@
 package com.example.fureverhomes_project.controller;
 
 import com.example.fureverhomes_project.dto.BoardReqDTO;
+import com.example.fureverhomes_project.dto.BoardResDTO;
 import com.example.fureverhomes_project.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/fureverhomes")
@@ -21,7 +24,7 @@ public class BoardController {
         return "html/furever_board_create";
     }
 
-    @GetMapping("/board/view")
+    @GetMapping("/board/{board_id}")
     public String viewBoardPage() {
         return "html/furever_board";
     }
@@ -40,6 +43,14 @@ public class BoardController {
                 return ResponseEntity.internalServerError().build();
             }
             return ResponseEntity.ok(boardId);
+        }
+
+        //한개 게시글 보기
+        @GetMapping("/board/{board_id}/view")
+        public ResponseEntity<BoardResDTO> selectBoard(@PathVariable("board_id") Long boardId) {
+            BoardResDTO boardResDTO = boardService.selectBoard(boardId);
+            if(boardResDTO != null) return ResponseEntity.ok(boardResDTO);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
 }

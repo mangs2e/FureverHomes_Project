@@ -91,7 +91,7 @@
                                 <span id="date">2023-09-15</span></li>
                             </ul>
                         </div>
-                        <span class="text-muted font-small mr-3" id="views"><span class="fas fa-eye mr-2"></span>680</span>
+                        <span class="text-muted font-small mr-3"><span class="fas fa-eye mr-2"></span><span id="views"></span></span>
                         <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split mb-3 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="icon icon-sm">
                                 <span class="fas fa-ellipsis-h icon-secondary"></span>
@@ -139,7 +139,7 @@
                     <!-- </nav> -->
                     <div class="tab-content" id="nav-tabContent">
                         <div class="text-sm-right mb-2">
-                            작성자: Writer</div>
+                            작성자: <span id="writer"></span></div>
                         <!-- 소개란 -->
                         <div class="tab-pane fade show active border-light" id="nav-introduce" role="tabpanel"
                             aria-labelledby="nav-introduce-tab">
@@ -148,7 +148,7 @@
                             <div class="row mb-5">
                                 <div class="col-12">
                                     <div class="fancy-gallery mb-5">
-                                        <div class="row">
+                                        <div class="row" id="image">
                                             <a href="/static/assets/img/conference-office.jpg" class="mb-4 col-6 col-sm-4 img-fluid"
                                                 data-fancybox="images" data-caption="Conference Space">
                                                 <img class="rounded" src="/static/assets/img/conference-office.jpg" alt="" />
@@ -175,21 +175,9 @@
                                             </a>
                                         </div>
                                     </div>
-                                    <p><span class="font-weight-bold">L'atelier</span> is the brainchild of 3 innovative
-                                        guys that want to create a working hub for the local community. The plan is to
-                                        offer a cool place to hang out with other creative souls and let the brainwaves go
-                                        berserk.
-                                    </p>
-                                    <p>The guys were the group behind the Startup Weekend Vancouver, Startup Pirates
-                                        Vancouver and Startup Coffee Vancouver, so they are no fools and have plenty of
-                                        experience in startups and community growth. This project is another notch into
-                                        creating Vancouver as a regional startup hub.
-                                    </p>
-                                    <p>Cowork Vancouver is aiming to attract the techies, the freelance developers or
-                                        anyone wishing to get involved in the startup scene - really there are no
-                                        exclusions of bodies who may want a desk - the founders just want a community of
-                                        entrepreneurs and geeks to mingle with.
-                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <div class="font-base" id="content"></div>
+                                    </div>
                                 </div>
                             </div>
                             <!--댓글-->
