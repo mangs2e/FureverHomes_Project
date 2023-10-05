@@ -13,7 +13,7 @@ $(document).ready(function () {
             data: JSON.stringify(data),
             async: false,
             success: function (data, status) {
-                location.href="/fureverhomes/board/view"
+                location.href="/fureverhomes/board"
             },
             error: function (data, textStatus) {
                 alert("등록 실패!")

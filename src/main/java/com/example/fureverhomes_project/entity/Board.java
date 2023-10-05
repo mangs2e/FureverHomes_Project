@@ -37,4 +37,8 @@ public class Board extends BaseEntity {
         this.views = views;
     }
 
+    public void updateViews() {
+        views += 1;
+    }
+
 }

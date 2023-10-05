@@ -15,42 +15,49 @@
 <link rel="canonical" href="https://themesberg.s3.us-east-2.amazonaws.com/public/products/spaces/thumbnail.jpg"/>
 
 <!-- Fontawesome -->
-<link type="text/css" href="/static/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet"/>
+<link type="text/css" th:href="@{/vendor/'@'fortawesome/fontawesome-free/css/all.min.css}" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/js/all.min.js"
         integrity="sha512-Cvxz1E4gCrYKQfz6Ne+VoDiiLrbFBvc6BPh4iyKo2/ICdIodfgc5Q9cBjRivfQNUXBCEnQWcEInSXsvlNHY/ZQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <!-- Leaflet JS -->
-<link type="text/css" href="/static/vendor/leaflet/dist/leaflet.css" rel="stylesheet">
+<link type="text/css" th:href="@{/vendor/leaflet/dist/leaflet.css}" rel="stylesheet">
 
 <!-- Fancybox -->
-<link rel="stylesheet" href="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+<link rel="stylesheet" th:href="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.css}">
 
 <!-- VectorMap -->
-<link rel="stylesheet" href="/static/vendor/jqvmap/dist/jqvmap.min.css">
+<link rel="stylesheet" th:href="@{/vendor/jqvmap/dist/jqvmap.min.css}">
 
 <!-- Main CSS -->
-<link type="text/css" href="/static/css/spaces.css" rel="stylesheet">
+<link type="text/css" th:href="@{/css/spaces.css}" rel="stylesheet">
 
 <!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
+
+<script
+        src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+        crossorigin="anonymous"
+></script>
 
 </head>
 
 <body>
-    <header class="header-global">
-        <section style="padding: 0px; height: 500px;"
+<main>
+<!--    <header class="header-global">-->
+    <section th:style="'padding: 0px; height: 500px;'"
         class="section bg-warning overlay-white text-white pb-3 pb-md-6">
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-dark "
-        style="padding-top: 25px; padding-bottom: 25px;">
+        th:style="'padding-top: 25px; padding-bottom: 25px;'">
         <div class="container position-relative">
-            <a class="navbar-brand mr-lg-3" href="/main">
-                <img class="navbar-brand-dark" style="width: 100px; height: auto;" src="/static/assets/img/illustrations/2_backgroundDelete.png"
-                        alt="menuimage">
+            <a class="navbar-brand mr-lg-3" th:href="@{/fureverhomes/main}">
+                <img class="navbar-brand-dark" th:style="'width: 100px; height: auto;'" th:src="@{/assets/img/illustrations/2_backgroundDelete.png}"
+                     alt="menuimage">
             </a>
             <div>
-                <button class="btn mb-2 mr-2 btn-warning" type="button" id="mypage-btn">마이페이지</button>
-                <button class="btn mb-2 mr-2 btn-warning" type="button" id="mypage-btn">입양 후 이야기</button>
-                <button class="btn mb-2 mr-2 btn-warning" type="button" id="sign-btn">로그아웃</button>
+                <a class="btn mb-2 mr-2 btn-warning" type="button" id="mypage-btn" th:href="@{/fureverhomes/mypage/adopt}">마이페이지</a>
+                <a class="btn mb-2 mr-2 btn-warning" type="button" id="board-btn" th:href="@{/fureverhomes/board}">입양 후 이야기</a>
+                <button class="btn mb-2 mr-2 btn-warning" type="button" id="signOut-btn">로그아웃</button>
             </div>
         </div>
     </nav>
@@ -58,7 +65,7 @@
         <div class="container section-image overlay-soft text-dark rounded px-lg-5 py-6 overflow-hidden position-relative border border-light shadow-sm">
             <div class="row no-gutters justify-content-between align-items-center">
                 <div class="ml-6 col-10 order-lg-2">
-                    <h1 class="h2 mb-4" style="color: black;">검색</h1>
+                    <h1 class="h2 mb-4" th:style="'color: black;'">검색</h1>
 
                     <div class="card p-md-2 mb-3">
                         <div class="card-body p-2 p-md-0">
@@ -67,7 +74,8 @@
                                 <div class="col-12 col-lg-5 pr-lg-1">
                                     <div class="form-group form-group-lg mb-lg-0">
                                         <div class="input-group">
-                                            <select class="form-control" id="" name="">
+                                            <select class="form-control" id="search-type">
+                                                <option value="search-type" disabled selected th:style="'display:none'">전체</option>
                                                 <option value="title">제목</option>
                                                 <option value="content">내용</option>
                                                 <option value="writer">작성자</option>
@@ -78,16 +86,16 @@
                                 <div class="col-12 col-lg-6 pr-lg-1">
                                     <div class="form-group form-group-lg mb-lg-0">
                                         <div class="input-group">
-                                            <input id="search-location" type="text" class="form-control autocomplete" required>
+                                            <input id="search-keyword" type="text" class="form-control autocomplete">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-1 pl-lg-1">
-                                    <button class="btn btn-block btn-lg btn-warning" type="submit" id="mypage-btn">
+                                    <button class="btn btn-block btn-lg btn-warning" type="submit" id="search-btn">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                                         </svg>
-                                    </span></button>
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -97,228 +105,154 @@
         </div>
     </section>
 </section>
-</header>
 
-<main>
-<div class="section section-lg">
+<section class="section section-lg">
 <div class="container">
     <div class="row pt-5 pt-md-0">            
         <div class="col-12">
             <div class="row align-items-center">
                 <div class="col-12 col-sm-12 col-md-6 col-lg-12">
-                    <a href="./furever_board_create.html" class="btn btn-outline-warning btn-block mt-4 mb-4 py-4">
-                        <span><span class="fas fa-plus mr-1"></span></span>글쓰기
-                    </a>
-                    <div class="card border-light mb-4">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col-12 col-lg-6 col-xl-4">
-                                <a href="../html/furever_board.html">
-                                <img src="/static/assets/img/meeting-office.jpg" alt="private office" class="card-img p-2 rounded-xl">
-                                </a>
-                            </div>
-                            <div class="col-12 col-lg-6 col-xl-8">
-                                <div class="card-body py-lg-0">
-                                <div class="d-flex no-gutters align-items-center mb-3">
-                                    <div class="pr-2 text-left">
-                                        <ul class="list-group mb-0">
-                                            <li class="list-group-item font-small p-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar pr-1" viewBox="0 0 16 16">
-                                                <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                                                </svg>
-                                            <span>2023-09-15</span></li>
-                                        </ul>
-                                    </div>
-                                    <span class="col text-muted font-small mr-3 text-left"><span class="fas fa-eye mr-2"></span>680</span>
-                                    <div class="btn-group">
-                                            <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split m-0 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="icon icon-sm">
-                                                    <span class="fas fa-ellipsis-h icon-secondary"></span>
-                                                </span>
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="./furever_board_edit.html"><span class="fas fa-edit mr-2"></span>
-                                                    수정하기</a>
-                                                    <a class="dropdown-item text-danger" data-toggle="modal"
-                                                    data-target="#modal-default"><span class="fa fa-trash mr-2"
-                                                            aria-hidden="true"></span>
-                                                        삭제하기</a>
-                                            </div>
-                                            <!--모달-->
-                                            <div class="modal fade" id="modal-default" tabindex="-1" role="dialog"
-                                            aria-labelledby="modal-default" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h6 class="modal-title">게시글 삭제</h6>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <div class="mb-2">
-                                                                <label class="col-form-label">정말로 삭제하시겠습니까?</label>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button id="booking" type="submit"
-                                                                class="btn btn-sm btn-warning"
-                                                                data-dismiss="modal">예, 삭제합니다
-                                                        </button>
-                                                        <button type="button" id="close"
-                                                                class="btn btn-link text-danger ml-auto"
-                                                                data-dismiss="modal">아니요
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <a href="../html/furever_board.html">
-                                    <h2 class="h5">게시글 제목</h2>
-                                </a>
-                                <div class="col d-flex pl-0">
-                                    <span class="text-muted font-small mr-3">Writer</span>
-                                </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                    <a th:href="@{/fureverhomes/board/create}" class="btn btn-outline-warning btn-block mt-4 mb-4 py-4">-->
+<!--                        <span><span class="fas fa-plus mr-1"></span></span>글쓰기-->
+<!--                    </a>-->
+                    <div class="card border-light mb-4 mt-2">
+                        <form>
+                            <table class="table">
+                                <thead>
+                                <tr th:style="'text-align: center'">
+                                    <th scope="col">#</th>
+                                    <th scope="col">제목</th>
+                                    <th scope="col">작성자</th>
+                                    <th scope="col">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar pr-1" viewBox="0 0 16 16">
+                                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                        </svg>등록일</th>
+                                    <th scope="col">
+                                        <span class="fas fa-eye mr-2"></span>조회수</th>
+                                </tr>
+                                </thead>
+                                <!--시작-->
+                                <tbody id="board-list">
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
                 </div>    
             </div>
-            <div class="row">
-                <div class="col">
+            <a class="btn mb-2 mr-2 btn-warning mr-auto" style="" type="button" th:href="@{/fureverhomes/board/create}">글쓰기</a>
+                <div class="col mt-3 d-flex justify-content-center">
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center mt-5">
-                            <li class="page-item">
-                                <a class="page-link" href="#">Previous</a>
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">4</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">5</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
+                        <ul class="pagination" id="pagination">
                         </ul>
                     </nav>
                 </div>
-            </div>
-        </div>
-            </div>
         </div>
     </div>
+</div>
+</section>
 </main>
-<footer class="footer pb-5 bg-warning overlay-white text-black pt-2 st-n9">
-    <div class="container">
-        <div class="row mt-6 text-center">
-            <div class="col-12 col-xl-6 mb-5 mb-xl-0">
-                <img style="min-height: 60px; color: RGB(207, 209, 218);" src="/static/assets/img/illustrations/2_backgroundDelete.png"
-                    height="50" class="mb-3" alt="Spaces logo">
-                <p>Newstopic English <br>Conversation Service</p>
-            </div>
-            <div class="col-12 col-xl-6 mb-5 mb-xl-0">
-                <span class="h5 text-black">Git Link</span>
-                <p class="text-muted font-small mt-2">check out our progress</p>
-                <a href="https://github.com/YeonuLEE/Topicsation-Project">
-                    <button class="btn btn-sm btn-black mb-xl-0 mr-2 mr-lg-2">
+    <footer class="footer pb-5 bg-warning overlay-white text-black pt-2 st-n9">
+        <div class="container">
+            <div class="row mt-6 text-center">
+                <div class="col-12 col-xl-6 mb-5 mb-xl-0">
+                    <img th:style="'min-height: 60px; color: RGB(207, 209, 218);'" th:src="@{/assets/img/illustrations/2_backgroundDelete.png}"
+                         height="50" class="mb-3" alt="fureverhomes logo">
+                    <p>Newstopic English <br>Conversation Service</p>
+                </div>
+                <div class="col-12 col-xl-6 mb-5 mb-xl-0">
+                    <span class="h5 text-black">Git Link</span>
+                    <p class="text-muted font-small mt-2">check out our progress</p>
+                    <a href="https://github.com/YeonuLEE/Topicsation-Project">
+                        <button class="btn btn-sm btn-black mb-xl-0 mr-2 mr-lg-2">
                         <span class="d-flex align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
-                                class="bi bi-github" viewBox="0 0 16 16">
+                                 class="bi bi-github" viewBox="0 0 16 16">
                                 <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
                             </svg>
                         </span>
-                    </button>
-                </a>
-                <button class="btn btn-sm btn-black">
-                    <a href="https://fortunate-jitterbug-838.notion.site/cb1516898d3e4575821fa274d6cb8e2c">
-                        <img src="/assets/img/notion-icon.png" alt="notion-icon" width="35" height="35">
+                        </button>
                     </a>
-                </button>
+                    <button class="btn btn-sm btn-black">
+                        <a href="https://fortunate-jitterbug-838.notion.site/cb1516898d3e4575821fa274d6cb8e2c">
+                            <img src="" alt="notion-icon" width="35" height="35">
+                        </a>
+                    </button>
+                </div>
             </div>
-        </div>
-        <hr class="my-3 my-lg-2">
-        <div class="text-center">
-            <ul>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
-                        href="https://fortunate-jitterbug-838.notion.site/160876db65df40979b37edb109a9694e">개인정보처리방침</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
-                        href="#">서비스소개</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
-                        href="https://fortunate-jitterbug-838.notion.site/92a7e1d4d2e642fc9cbeac5c5ebcb4c2">이용약관</a></span></li>
-                <li><span style="display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);"><a
-                        href="https://fortunate-jitterbug-838.notion.site/cbbd0eb370cd435d84b23c30140f22d7">광고상표소개</a></span></li>
-            </ul>
-        </div>
-        <hr class="my-3 my-lg-2">
-        <div class="row">
-            <div class="col mb-md-0 mt-3">
-                <div class="d-flex text-center text-black justify-content-center align-items-center" role="contentinfo">
-                    <p class="font-weight-normal font-small mb-0">
-                        Copyright ©️ WhyCodeRun <span class="current-year">2023</span>.
-                        All rights reserved.
-                    </p>
+            <hr class="my-3 my-lg-2">
+            <div class="text-center">
+                <ul>
+                    <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
+                            href="https://fortunate-jitterbug-838.notion.site/160876db65df40979b37edb109a9694e">개인정보처리방침</a></span></li>
+                    <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
+                            href="#">서비스소개</a></span></li>
+                    <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
+                            href="https://fortunate-jitterbug-838.notion.site/92a7e1d4d2e642fc9cbeac5c5ebcb4c2">이용약관</a></span></li>
+                    <li><span th:style="'display:inline-block; height:20px; width:200px; color: RGB(207, 209, 218);'"><a
+                            href="https://fortunate-jitterbug-838.notion.site/cbbd0eb370cd435d84b23c30140f22d7">광고상표소개</a></span></li>
+                </ul>
+            </div>
+            <hr class="my-3 my-lg-2">
+            <div class="row">
+                <div class="col mb-md-0 mt-3">
+                    <div class="d-flex text-center text-black justify-content-center align-items-center" role="contentinfo">
+                        <p class="font-weight-normal font-small mb-0">
+                            Copyright ©️ WhyCodeRun <span class="current-year">2023</span>.
+                            All rights reserved.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-<!-- Core -->
-<script src="/static/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/static/vendor/popper.js/dist/umd/popper.min.js"></script>
-<script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/static/vendor/headroom.js/dist/headroom.min.js"></script>
-<script src="/static/vendor/onscreen/dist/on-screen.umd.min.js"></script>
+    <!-- Custom js -->
+    <script th:src="@{/js/headerButtons.js}"></script>
+    <script th:src="@{/js/board-search.js}"></script>
 
-<!-- NoUISlider -->
-<script src="/static/vendor/nouislider/distribute/nouislider.min.js"></script>
+    <!-- Core -->
+    <script th:src="@{/vendor/jquery/dist/jquery.min.js}"></script>
+    <script th:src="@{/vendor/popper.js/dist/umd/popper.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/vendor/headroom.js/dist/headroom.min.js}"></script>
+    <script th:src="@{/vendor/onscreen/dist/on-screen.umd.min.js}"></script>
 
-<!-- Bootstrap Datepicker -->
-<script src="/static/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- NoUISlider -->
+    <script th:src="@{/vendor/nouislider/distribute/nouislider.min.js}"></script>
 
-<!-- jQuery Waypoints -->
-<script src="/static/vendor/waypoints/lib/jquery.waypoints.min.js"></script>
+    <!-- Bootstrap Datepicker -->
+    <script th:src="@{/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"></script>
 
-<!-- Owl acrousel -->
-<script src="/static/vendor/owl.carousel/dist/owl.carousel.min.js"></script>
+    <!-- jQuery Waypoints -->
+    <script th:src="@{/vendor/waypoints/lib/jquery.waypoints.min.js}"></script>
 
-<!-- Smooth scroll -->
-<script src="/static/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js"></script>
+    <!-- Owl acrousel -->
+    <script th:src="@{/vendor/owl.carousel/dist/owl.carousel.min.js}"></script>
 
-<!-- Fancybox -->
-<script src="/static/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+    <!-- Smooth scroll -->
+    <script th:src="@{/vendor/smooth-scroll/dist/smooth-scroll.polyfills.min.js}"></script>
 
-<!-- Sticky sidebar -->
-<script src="/static/vendor/sticky-sidebar/dist/sticky-sidebar.min.js"></script>
+    <!-- Fancybox -->
+    <script th:src="@{/vendor/'@'fancyapps/fancybox/dist/jquery.fancybox.min.js}"></script>
 
-<!-- Mapbox & Leaflet.js -->
-<script src="/static/vendor/leaflet/dist/leaflet.js"></script>
+    <!-- Sticky sidebar -->
+    <script th:src="@{/vendor/sticky-sidebar/dist/sticky-sidebar.min.js}"></script>
 
-<!-- Chartist -->
-<script src="/static/vendor/chartist/dist/chartist.min.js"></script>
-<script src="/static/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <!-- Mapbox & Leaflet.js -->
+    <script th:src="@{/vendor/leaflet/dist/leaflet.js}"></script>
 
-<!-- Vector Maps -->
-<script src="/static/vendor/jqvmap/dist/jquery.vmap.min.js"></script>
-<script src="/static/vendor/jqvmap/dist/maps/jquery.vmap.usa.js"></script>
+    <!-- Chartist -->
+    <script th:src="@{/vendor/chartist/dist/chartist.min.js}"></script>
+    <script th:src="@{/vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js}"></script>
 
-<!-- Sliderform -->
-<script src="/static/js/jquery.slideform.js"></script>
+    <!-- Vector Maps -->
+    <script th:src="@{/vendor/jqvmap/dist/jquery.vmap.min.js}"></script>
+    <script th:src="@{/vendor/jqvmap/dist/maps/jquery.vmap.usa.js}"></script>
 
-<!-- Spaces custom Javascript -->
-<script src="/static/js/spaces.js"></script>
+    <!-- Sliderform -->
+    <script th:src="@{/js/jquery.slideform.js}"></script>
+
+    <!-- Spaces custom Javascript -->
+    <script th:src="@{/js/spaces.js}"></script>
 </body>
 </html>
