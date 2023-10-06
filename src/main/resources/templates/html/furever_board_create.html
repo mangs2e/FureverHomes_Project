@@ -66,7 +66,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 mt-4">
-                    <form action="#" method="post" class="card border-light p-4 mb-4">
+                    <form action="#" method="post" class="card border-light p-4 mb-4" id="board_form">
                         <h1 class="h5 mb-4">게시글 등록</h1>
                         <div class="form-group">
                             <label for="title">제목</label>
@@ -76,41 +76,39 @@
                             <label for="content">내용</label>
                             <textarea rows="10" class="form-control text-gray" id="content" required></textarea>
                         </div>
+<!--                    </form>-->
+                        <!-- <form action="#" method="post" class="card text-gray border-light p-4 mb-4">
+                            <h2 class="h6">대표 이미지</h2>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div class="profile-image-small fmxw-100 mr-4">
+                                    <img class="rounded" src="../../assets/img/account/office-1.jpg" alt="Office">
+                                </div>
+                                <div class="custom-file">
+                                    <input id="featured_image" type="file" class="custom-file-input">
+                                    <label class="custom-file-label" for="featured_image">Choose file</label>
+                                </div>
+                            </div>
+                            <small class="text-gray font-weight-light font-xs d-block mt-2">Image should be at least 500 pixels wide and only *.jpg, *.png and *.jpeg formats are accepted.</small>
+                        </form> -->
+                        <!--                    <form action="#" method="post" class="card text-gray border-light p-4 mb-4">-->
+                        <h2 class="h6 mt-2">이미지 업로드</h2>
+                        <div id="fileForm">
+                            <div class="file-upload-row d-flex justify-content-between align-items-center mt-2">
+<!--                        <div class="d-flex justify-content-between align-items-center mt-2" id="fileForm">-->
+                                <div class="custom-file2">
+                                    <input id="customFile" type="file" class="custom-file-input2" accept=".jpg,.jpeg,.png">
+                                    <label class="custom-file-label" for="customFile" id="show-files">Choose file</label>
+                                </div>
+                                <button type="button" class="btn btn-warning mt-1 ml-1" style="height: calc(1.5em + 1.2625rem);" id="add-img-btn">추가</button>
+                            </div>
+                        </div>
+                        <small class="text-gray font-weight-light font-xs d-block mt-2">이미지는 최대 10MB까지 가능하며 jpeg, jpg, png만 올릴 수 있습니다.</small>
+                        <div id="add-img">
+                        </div>
                         <div class="row">
                             <div class="col">
                                 <button class="btn btn-warning mt-2 animate-up-2"
-                                    type="button" id="create-btn">등록하기</button>
-                            </div>
-                        </div>
-                    </form>
-                    <!-- <form action="#" method="post" class="card text-gray border-light p-4 mb-4">
-                        <h2 class="h6">대표 이미지</h2>
-                        <div class="d-flex justify-content-between align-items-center mt-2">
-                            <div class="profile-image-small fmxw-100 mr-4">
-                                <img class="rounded" src="../../assets/img/account/office-1.jpg" alt="Office">
-                            </div>
-                            <div class="custom-file">
-                                <input id="featured_image" type="file" class="custom-file-input">
-                                <label class="custom-file-label" for="featured_image">Choose file</label>
-                            </div>
-                        </div>
-                        <small class="text-gray font-weight-light font-xs d-block mt-2">Image should be at least 500 pixels wide and only *.jpg, *.png and *.jpeg formats are accepted.</small>
-                    </form> -->
-                    <form action="#" method="post" class="card text-gray border-light p-4 mb-4">
-                        <h2 class="h6">이미지 업로드</h2>
-                        <div class="d-flex justify-content-between align-items-center mt-2">
-                            <div class="custom-file">
-                                <input id="picture" type="file" class="custom-file-input" multiple>
-                                <label class="custom-file-label" for="picture">Choose files</label>
-                            </div>
-                        </div>
-                        <small class="text-gray font-weight-light font-xs d-block mt-2">Images should be at least 500 pixels wide and only *.jpg, *.png and *.jpeg formats are accepted.</small>
-                        <div class="d-flex flex-wrap mt-4">
-                            <div class="profile-image-small fmxw-100 mr-3 mb-3">
-                                <img class="rounded" src="/static/assets/img/account/office-1.jpg" alt="Office Conference">
-                            </div>
-                            <div class="profile-image-small fmxw-100 mr-3 mb-3">
-                                <img class="rounded" src="/static/assets/img/account/office-2.jpg" alt="Office Cowork">
+                                        type="button" id="create-btn">등록하기</button>
                             </div>
                         </div>
                     </form>

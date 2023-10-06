@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -47,8 +48,10 @@ public class BoardController {
 
         //게시판 등록
         @PostMapping("/board.create")
-        public ResponseEntity<Long> insertBoard(@RequestBody BoardReqDTO boardReqDTO, HttpServletRequest request) {
-            Long boardId = boardService.insertBoard((Long) request.getSession().getAttribute("loginMember"), boardReqDTO);
+        public ResponseEntity<Long> insertBoard(@RequestPart(value = "customFile", required = false)List<MultipartFile> files,
+                                                @RequestParam Map<String, String> params,
+                                                HttpServletRequest request) throws Exception {
+            Long boardId = boardService.insertBoard((Long) request.getSession().getAttribute("loginMember"), params, files);
             if (boardId == null) {
                 return ResponseEntity.internalServerError().build();
             }

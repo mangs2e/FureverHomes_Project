@@ -1,11 +1,14 @@
 package com.example.fureverhomes_project.service;
 
+import com.example.fureverhomes_project.component.FileUtils;
 import com.example.fureverhomes_project.dto.BoardPageDTO;
 import com.example.fureverhomes_project.dto.BoardReqDTO;
 import com.example.fureverhomes_project.dto.BoardResDTO;
 import com.example.fureverhomes_project.entity.Board;
+import com.example.fureverhomes_project.entity.File;
 import com.example.fureverhomes_project.entity.Member;
 import com.example.fureverhomes_project.repository.BoardRepository;
+import com.example.fureverhomes_project.repository.FileRepository;
 import com.example.fureverhomes_project.repository.MemberRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -16,6 +19,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -30,13 +34,34 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
     private final MemberRepository memberRepository;
+    private final FileRepository fileRepository;
+    private final FileUtils fileUtils;
     private final EntityManager em;
+
+//    //게시글 등록
+//    @Transactional
+//    public Long insertBoard(final Long memberId, final BoardReqDTO boardReqDTO) {
+//        Member member = memberRepository.findById(memberId).orElseThrow(() -> new EntityNotFoundException("Member 객체가 없음"));
+//        Board board = boardRepository.save(boardReqDTO.toEntity(member));
+//        return board.getId();
+//    }
 
     //게시글 등록
     @Transactional
-    public Long insertBoard(final Long memberId, final BoardReqDTO boardReqDTO) {
+    public Long insertBoard(final Long memberId, final Map<String, String> param, final List<MultipartFile> files) throws Exception{
+        String title = param.get("title");
+        String content = param.get("content");
+        System.out.println(title+": "+content);
+        BoardReqDTO boardReqDTO = BoardReqDTO.builder().title(title).content(content).build();
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new EntityNotFoundException("Member 객체가 없음"));
         Board board = boardRepository.save(boardReqDTO.toEntity(member));
+
+        List<File> fileList = fileUtils.parseFileInfo(files);
+        if (!fileList.isEmpty()) {
+            for (File file : fileList) {
+                board.addFile(fileRepository.save(file));
+            }
+        }
         return board.getId();
     }
 

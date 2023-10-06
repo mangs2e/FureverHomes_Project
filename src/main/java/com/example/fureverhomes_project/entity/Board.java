@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,6 +19,9 @@ public class Board extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member; //연관관계 매핑 - 멤버 (작성자 필요)
+
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<File> files = new ArrayList<>();
 
     @Lob
     @Column(nullable = false)
@@ -39,6 +44,14 @@ public class Board extends BaseEntity {
 
     public void updateViews() {
         views += 1;
+    }
+
+    public void addFile(File file) {
+        this.files.add(file);
+
+        if (file.getBoard() != this) {
+            file.setBoard(this);
+        }
     }
 
 }
