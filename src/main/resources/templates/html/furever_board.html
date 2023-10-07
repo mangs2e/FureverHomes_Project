@@ -92,17 +92,19 @@
                             </ul>
                         </div>
                         <span class="text-muted font-small mr-3"><span class="fas fa-eye mr-2"></span><span id="views"></span></span>
-                        <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split mb-3 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-link text-dark dropdown-toggle dropdown-toggle-split mb-3 p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="board_menu">
                             <span class="icon icon-sm">
                                 <span class="fas fa-ellipsis-h icon-secondary"></span>
                             </span>
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="./furever_board_edit.html"><span class="fas fa-edit mr-2"></span>
+                            <a class="dropdown-item" id="update-btn">
+                                <span class="fas fa-edit mr-2"></span>
                                 수정하기</a>
                             <a class="dropdown-item text-danger" data-toggle="modal"
-                            data-target="#modal-default"><span class="fa fa-trash mr-2"
+                            data-target="#modal-default">
+                                <span class="fa fa-trash mr-2"
                                     aria-hidden="true"></span>
                                 삭제하기</a>
                         </div>
@@ -113,7 +115,6 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h6 class="modal-title">게시글 삭제</h6>
-                                        </button>
                                     </div>
                                     <div class="modal-body">
                                         <form>
@@ -123,7 +124,7 @@
                                         </form>
                                     </div>
                                     <div class="modal-footer">
-                                        <button id="booking" type="submit"
+                                        <button id="boardDelete-btn" type="button"
                                                 class="btn btn-sm btn-warning"
                                                 data-dismiss="modal">예, 삭제합니다
                                         </button>
@@ -148,31 +149,7 @@
                             <div class="row mb-5">
                                 <div class="col-12">
                                     <div class="fancy-gallery mb-5">
-                                        <div class="row" id="image">
-                                            <a href="/static/assets/img/conference-office.jpg" class="mb-4 col-6 col-sm-4 img-fluid"
-                                                data-fancybox="images" data-caption="Conference Space">
-                                                <img class="rounded" src="/static/assets/img/conference-office.jpg" alt="" />
-                                            </a>
-                                            <a href="/static/assets/img/cowork-office.jpg" class="mb-4 col-6 col-sm-4 img-fluid"
-                                                data-fancybox="images" data-caption="Cowork Office">
-                                                <img class="rounded" src="/static/assets/img/cowork-office.jpg" alt="" />
-                                            </a>
-                                            <a href="/static/assets/img/lifestyle-office.jpg" class="mb-4 col-6 col-sm-4 img-fluid"
-                                                data-fancybox="images" data-caption="Lifestyle Space">
-                                                <img class="rounded" src="/static/assets/img/lifestyle-office.jpg" alt="" />
-                                            </a>
-                                            <a href="/static/assets/img/image-office.jpg" class="mb-4 col-6 col-sm-4 img-fluid"
-                                                data-fancybox="images" data-caption="Conference Space">
-                                                <img class="rounded" src="/static/assets/img/image-office.jpg" alt="" />
-                                            </a>
-                                            <a href="/static/assets/img/meeting-office.jpg" class="mb-4 col-6 col-sm-4 img-fluid"
-                                                data-fancybox="images" data-caption="Meeting Office">
-                                                <img class="rounded" src="/static/assets/img/meeting-office.jpg" alt="" />
-                                            </a>
-                                            <a href="/static/assets/img/private-office.jpg" class="mb-4 col-6 col-sm-4 img-fluid"
-                                                data-fancybox="images" data-caption="Private Space">
-                                                <img class="rounded" src="/static/assets/img/private-office.jpg" alt="" />
-                                            </a>
+                                        <div class="row ml-1" id="image">
                                         </div>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mb-2">

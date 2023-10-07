@@ -40,7 +40,7 @@ function boardSearchGet(page, searchType, searchKeyword){
                 let board = board_list[i];
 
                 let link = "/fureverhomes/board/";
-                let boardId = board.id;
+                let boardId = board.board_id;
 
                 link = link + boardId;
 

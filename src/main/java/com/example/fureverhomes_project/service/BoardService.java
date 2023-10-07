@@ -15,6 +15,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import static com.example.fureverhomes_project.entity.QBoard.board;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,13 +40,7 @@ public class BoardService {
     private final FileUtils fileUtils;
     private final EntityManager em;
 
-//    //게시글 등록
-//    @Transactional
-//    public Long insertBoard(final Long memberId, final BoardReqDTO boardReqDTO) {
-//        Member member = memberRepository.findById(memberId).orElseThrow(() -> new EntityNotFoundException("Member 객체가 없음"));
-//        Board board = boardRepository.save(boardReqDTO.toEntity(member));
-//        return board.getId();
-//    }
+    private String uploadDirectory = "";
 
     //게시글 등록
     @Transactional
@@ -67,11 +63,16 @@ public class BoardService {
 
     //게시글 조회
     @Transactional
-    public BoardResDTO selectBoard(final Long boardId) {
+    public BoardResDTO selectBoard(final Long boardId, final Long memberId) {
         Board board = boardRepository.findById(boardId).orElseThrow(() -> new EntityNotFoundException("Board 객체가 없음"));
         board.updateViews(); //조회하는 동시에 조회수 1 추가
         boardRepository.save(board);
-        return new BoardResDTO(board);
+        BoardResDTO boardResDTO = new BoardResDTO(board);
+        boardResDTO.setFiles(board);
+        if (Objects.equals(memberId, board.getMember().getId())) {
+            boardResDTO.setEqualLogin();
+        }
+        return boardResDTO;
     }
 
     //게시글 전체 조회
@@ -106,5 +107,17 @@ public class BoardService {
                 .where(builder).orderBy(board.createdTime.desc()).offset(pageable.getOffset()).limit(pageable.getPageSize()).fetch();
         long totalCount = queryFactory.select(board.count()).from(board).where(builder).fetchFirst();
         return new PageImpl<>(boardList, pageable, totalCount);
+    }
+
+    //게시글 삭제
+    @Transactional
+    public void deleteBoard(final Long boardId) {
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> new EntityNotFoundException("Board 객체가 없음"));
+        if (!board.getFiles().isEmpty()) {
+            for (File file : board.getFiles()) {
+                fileUtils.deleteFile(file);
+            }
+        }
+        boardRepository.delete(board);
     }
 }

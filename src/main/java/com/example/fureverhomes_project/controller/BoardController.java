@@ -40,6 +40,10 @@ public class BoardController {
         return "html/furever_board_create";
     }
 
+    @GetMapping("/board/{board_id}/update")
+    public String updateBoardPage() {
+        return "html/furever_board_edit";}
+
 
 
     @RestController
@@ -60,8 +64,8 @@ public class BoardController {
 
         //한개 게시글 보기
         @GetMapping("/board/{board_id}/view")
-        public ResponseEntity<BoardResDTO> selectBoard(@PathVariable("board_id") Long boardId) {
-            BoardResDTO boardResDTO = boardService.selectBoard(boardId);
+        public ResponseEntity<BoardResDTO> selectBoard(@PathVariable("board_id") Long boardId, HttpServletRequest request) {
+            BoardResDTO boardResDTO = boardService.selectBoard(boardId, (Long) request.getSession().getAttribute("loginMember"));
             if(boardResDTO != null) return ResponseEntity.ok(boardResDTO);
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -73,6 +77,13 @@ public class BoardController {
             Pageable pageable = PageRequest.of(pageRequest.getPageNumber() - 1, pageRequest.getPageSize(), sort);
             BoardPageDTO boardResDTOS = boardService.selectAllBoard(params, pageable);
             return ResponseEntity.ok(boardResDTOS);
+        }
+
+        //게시글 삭제
+        @DeleteMapping("/board/{board_id}/delete")
+        public ResponseEntity<Object> deleteBoard(@PathVariable("board_id") Long boardId) {
+            boardService.deleteBoard(boardId);
+            return ResponseEntity.ok().build();
         }
     }
 }

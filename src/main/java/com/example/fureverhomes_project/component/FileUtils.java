@@ -2,6 +2,7 @@ package com.example.fureverhomes_project.component;
 
 import com.example.fureverhomes_project.dto.FileDTO;
 import com.example.fureverhomes_project.entity.File;
+import lombok.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
@@ -29,7 +30,7 @@ public class FileUtils {
             String absolutePath = new java.io.File("").getAbsolutePath() + java.io.File.separator + java.io.File.separator;
 
             //파일을 저장할 세부 경로 지정
-            String path = "board_images" + java.io.File.separator + current_date;
+            String path = "src/main/resources/static/board_images" + java.io.File.separator + current_date;
             java.io.File file = new java.io.File(path);
 
             //디렉터가 존재하지 않을 경우
@@ -85,5 +86,21 @@ public class FileUtils {
             }
         }
         return fileList;
+    }
+
+    public void deleteFile(File file) {
+        String date = file.getCreateDate().toString().substring(0, 10).replace("-","");
+        String absolutePath = new java.io.File("").getAbsolutePath() + java.io.File.separator + java.io.File.separator;
+        String drPath = absolutePath + "src/main/resources/static/board_images" + java.io.File.separator + date;
+        String path = drPath + java.io.File.separator + file.getSave_name();
+        java.io.File targetFile = new java.io.File(path);
+        java.io.File targetDr = new java.io.File(drPath);
+
+        if (targetFile.exists()) {
+            targetFile.delete();
+        }
+        if (!targetDr.exists()) {
+            targetDr.delete();
+        }
     }
 }

@@ -15,6 +15,11 @@ public class FileDTO {
         this.fileSize = fileSize;
     }
 
+    public FileDTO(File file) {
+        this.originalFileName = file.getOriginal_name();
+        this.saveFileName = file.getSave_name();
+    }
+
     public File toEntity(File file) {
         return File.builder()
                 .original_name(originalFileName)

@@ -6,6 +6,14 @@ let boardId = number;
 
 $(document).ready(function () {
     doGetBoardView();
+
+    $("#update-btn").click(function () {
+        putUpdateBoard();
+    })
+
+    $("#boardDelete-btn").click(function () {
+        deleteBoard();
+    });
 })
 
 function doGetBoardView() {
@@ -18,9 +26,44 @@ function doGetBoardView() {
 
             let title = data.title;
             let uploadDate = formatLocalDateTime(data.uploadDate);
+            let pathDate = formatPathDate(data.uploadDate);
             let views = data.views;
             let writer = data.writer;
+            let isLogin = data.equalLogin;
             let content = data.content;
+            if (data.files != null) {
+                let files_list = data.files;
+                let dataBody = $("#image");
+                dataBody.empty();
+                let links = [];
+                for (let i = 0; i < files_list.length; i++) {
+
+                    let files = files_list[i];
+                    let link = "/board_images/";
+                    link = link + pathDate + "/" + files.saveFileName;
+                    console.log(link);
+
+                    links.push(link);
+                }
+
+                for (let i = 0; i < links.length; i++) {
+
+                    let img = $("<img>", {
+                    src: links[i],
+                    alt: "board-img",
+                    class: "rounded mb-1",
+                    style: "width: 90%; align-content: center;"
+                    });
+
+                    dataBody.append(img);
+                }
+            }
+
+            console.log(isLogin)
+
+            if (!isLogin) {
+                $("#board_menu").hide();
+            }
 
             $("#title").text(title);
             $("#date").text(uploadDate);
@@ -40,5 +83,28 @@ function formatLocalDateTime(date) {
     let minute = date.substring(14, 16);
 
     return yymmdd + ' ' + hour + ':' + minute;
+}
+
+function formatPathDate(date) {
+    return date.substring(0, 10).replace(/-/g, '');
+}
+
+function putUpdateBoard() {
+    let updateLink = "/fureverhomes/board/{board_id}/update".replace("{board_id}", boardId);
+    location.href = updateLink;
+}
+function deleteBoard() {
+    let deleteLink = "/fureverhomes/board/{board_id}/delete".replace("{board_id}", boardId);
+
+    $.ajax({
+        type: "DELETE",
+        url: deleteLink,
+        success: function () {
+            location.href = "/fureverhomes/board";
+        },
+        error: function () {
+            alert("게시글 삭제 실패!")
+        }
+    });
 }
 
