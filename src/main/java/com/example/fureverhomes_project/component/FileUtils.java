@@ -28,9 +28,10 @@ public class FileUtils {
 
             //프로젝트 디렉터 내의 저장을 위한 절대 경로 설정
             String absolutePath = new java.io.File("").getAbsolutePath() + java.io.File.separator + java.io.File.separator;
+            String classPath = absolutePath + "src/main/resources/static";
 
             //파일을 저장할 세부 경로 지정
-            String path = "src/main/resources/static/board_images" + java.io.File.separator + current_date;
+            String path = "/board_images" + java.io.File.separator + current_date;
             java.io.File file = new java.io.File(path);
 
             //디렉터가 존재하지 않을 경우
@@ -65,19 +66,20 @@ public class FileUtils {
                 String save_name = uuid + originalExtension;
 
                 //파일 DTO 생성
-                FileDTO fileDTO = new FileDTO(multipartFile.getOriginalFilename(), save_name, multipartFile.getSize());
+                FileDTO fileDTO = new FileDTO(multipartFile.getOriginalFilename(), save_name, path, multipartFile.getSize());
 
                 //파일 엔티티 생성
                 File fileEntity = File.builder()
                         .original_name(fileDTO.getOriginalFileName())
                         .save_name(fileDTO.getSaveFileName())
+                        .file_path(fileDTO.getFilePath())
                         .size(fileDTO.getFileSize()).build();
 
                 //생성후 리스트 추가
                 fileList.add(fileEntity);
 
                 //지정한 경로에 저장
-                file = new java.io.File(absolutePath + path + java.io.File.separator + save_name);
+                file = new java.io.File(classPath + path + java.io.File.separator + save_name);
                 multipartFile.transferTo(file);
 
                 //파일 권한 설정(쓰기, 읽기)
@@ -89,9 +91,8 @@ public class FileUtils {
     }
 
     public void deleteFile(File file) {
-        String date = file.getCreateDate().toString().substring(0, 10).replace("-","");
         String absolutePath = new java.io.File("").getAbsolutePath() + java.io.File.separator + java.io.File.separator;
-        String drPath = absolutePath + "src/main/resources/static/board_images" + java.io.File.separator + date;
+        String drPath = absolutePath + "src/main/resources/static" + java.io.File.separator + file.getFile_path();
         String path = drPath + java.io.File.separator + file.getSave_name();
         java.io.File targetFile = new java.io.File(path);
         java.io.File targetDr = new java.io.File(drPath);

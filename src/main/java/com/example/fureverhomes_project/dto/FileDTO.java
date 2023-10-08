@@ -7,23 +7,27 @@ import lombok.Getter;
 public class FileDTO {
     private String originalFileName;
     private String saveFileName;
+    private String filePath;
     private Long fileSize;
 
-    public FileDTO(String originalFileName, String saveFileName, Long fileSize) {
+    public FileDTO(String originalFileName, String saveFileName, String filePath, Long fileSize) {
         this.originalFileName = originalFileName;
         this.saveFileName = saveFileName;
+        this.filePath = filePath;
         this.fileSize = fileSize;
     }
 
     public FileDTO(File file) {
         this.originalFileName = file.getOriginal_name();
         this.saveFileName = file.getSave_name();
+        this.filePath = file.getFile_path();
     }
 
     public File toEntity(File file) {
         return File.builder()
                 .original_name(originalFileName)
                 .save_name(saveFileName)
+                .file_path(filePath)
                 .size(fileSize).build();
     }
 }

@@ -54,4 +54,16 @@ public class Board extends BaseEntity {
         }
     }
 
+    public void deleteFile(File file) {
+        this.files.remove(file);
+    }
+
+    public void updateTitle(String title) {
+        this.title = title;
+    }
+
+    public void updateContent(String content) {
+        this.content = content;
+    }
+
 }
