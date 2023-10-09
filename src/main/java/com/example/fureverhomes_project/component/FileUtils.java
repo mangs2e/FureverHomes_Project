@@ -2,7 +2,6 @@ package com.example.fureverhomes_project.component;
 
 import com.example.fureverhomes_project.dto.FileDTO;
 import com.example.fureverhomes_project.entity.File;
-import lombok.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;

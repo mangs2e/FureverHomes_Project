@@ -2,7 +2,6 @@ package com.example.fureverhomes_project.dto;
 
 import com.example.fureverhomes_project.entity.Board;
 import com.example.fureverhomes_project.entity.Comment;
-import com.example.fureverhomes_project.entity.File;
 import lombok.Getter;
 
 import java.time.LocalDateTime;

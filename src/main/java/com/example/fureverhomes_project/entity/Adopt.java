@@ -10,7 +10,6 @@ import java.time.LocalDate;
 
 @Entity
 @Getter
-@ToString
 @NoArgsConstructor
 public class Adopt {
 

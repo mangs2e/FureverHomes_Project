@@ -20,7 +20,6 @@ $(document).ready(function () {
         let postURL = "/fureverhomes/board.create";
 
         const formData = new FormData($("#board_form")[0]);
-        // formData.append("customFile", $("#customFile")[0].files[0]);
         $(".file-upload-row").each(function (index, element) {
             let filesInput = $(element).find(".custom-file-input2")[0];
             let files = filesInput.files;

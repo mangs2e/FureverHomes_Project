@@ -43,7 +43,6 @@ public class AnimalController {
         public ResponseEntity<AnimalPageDTO> getAnimalList(
                 @RequestParam Map<String, String> requestParams, Pageable pageRequest
                 ) {
-            System.out.println("컨트롤러 접근 성공!");
             Sort sort = Sort.by(Sort.Order.desc("regiDate")); // 필요한 정렬을 여기에 추가
             Pageable pageable = PageRequest.of(pageRequest.getPageNumber() - 1, pageRequest.getPageSize(), sort);
             AnimalPageDTO animals = animalService.searchAnimal(requestParams, pageable);

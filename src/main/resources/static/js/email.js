@@ -27,9 +27,9 @@ $(document).ready(function () {
     })
 
 
+    //인증 메일 전송
     $("#send-btn").click(function () {
 
-        // dataBody 재구성
         dataBody.empty();
         dataBody.append(form);
         form.append(div1);
@@ -65,7 +65,6 @@ $(document).ready(function () {
 
         let emailCode = $("#email-code").val();
         sessionStorage.removeItem("email");
-        console.log(emailCode);
 
         $.ajax({
             type: "POST",

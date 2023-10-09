@@ -71,7 +71,6 @@ public class MemberController {
         @PostMapping("/signup.post")
         public ResponseEntity<String> signUpMember(@RequestBody MemberReqDto memberReqDto) {
             if (memberService.saveMember(memberReqDto) != null) {
-                System.out.println(ResponseEntity.ok(memberReqDto.getEmail()));
                 return ResponseEntity.ok(memberReqDto.getEmail());
             }
             return ResponseEntity.internalServerError().build();

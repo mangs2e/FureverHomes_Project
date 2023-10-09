@@ -1,7 +1,6 @@
 package com.example.fureverhomes_project.controller;
 
 import com.example.fureverhomes_project.dto.BoardPageDTO;
-import com.example.fureverhomes_project.dto.BoardReqDTO;
 import com.example.fureverhomes_project.dto.BoardResDTO;
 import com.example.fureverhomes_project.service.BoardService;
 import lombok.RequiredArgsConstructor;

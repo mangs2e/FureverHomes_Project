@@ -14,8 +14,6 @@ import java.util.Set;
 
 @Entity
 @Getter
-@ToString
-@Setter
 public class Animal {
 
     @Id @Column(name = "ANIMAL_ID")

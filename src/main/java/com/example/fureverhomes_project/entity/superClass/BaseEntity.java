@@ -1,7 +1,5 @@
 package com.example.fureverhomes_project.entity.superClass;
 
-import lombok.Getter;
-
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;

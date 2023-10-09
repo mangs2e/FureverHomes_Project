@@ -59,10 +59,10 @@ $(document).ready(function (){
         }
     });
 
+    //관심동물 등록
     $("#interest-btn").click(function () {
 
         let pathUrl = "/fureverhomes/detail/{animal_id}/interest".replace("{animal_id}", animalId);
-        console.log(pathUrl);
 
         $.ajax({
             type: "POST",
@@ -80,6 +80,7 @@ $(document).ready(function (){
         });
     });
 
+    //입양신청 등록
     $("#adopt-btn").click(function () {
 
         if (!telCheck) {
@@ -102,7 +103,6 @@ $(document).ready(function (){
         }
 
         let pathUrl = "/fureverhomes/detail/{animal_id}/adopt".replace("{animal_id}", animalId);
-        console.log(pathUrl);
         let breed = $('input[name="breeding"]:checked').val();
         breed = breed === "Y";
 
@@ -146,7 +146,6 @@ function datailGet(){
 
     let getUrl = "/fureverhomes/detail/{animal_id}/getDetail";
     getUrl = getUrl.replace("{animal_id}", animalId);
-    console.log(getUrl);
 
     $.ajax({
         url: getUrl,

@@ -21,7 +21,6 @@ public class CommentController {
     public ResponseEntity<Object> insertComment(@PathVariable("board_id") Long board_id, @RequestBody CommentReqDTO commentReqDTO, HttpServletRequest request) {
         Long member_id = (Long) request.getSession().getAttribute("loginMember");
         CommentReqDTO dto = CommentReqDTO.builder().board_id(board_id).member_id(member_id).comment(commentReqDTO.getComment()).build();
-        System.out.println(commentReqDTO.getBoard_id());
         Long commentId = commentService.insertComment(dto);
         if (commentId != null) {
             return ResponseEntity.ok(commentId);

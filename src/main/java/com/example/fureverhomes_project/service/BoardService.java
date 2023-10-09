@@ -43,7 +43,6 @@ public class BoardService {
     public Long insertBoard(final Long memberId, final Map<String, String> param, final List<MultipartFile> files) throws Exception{
         String title = param.get("title");
         String content = param.get("content");
-        System.out.println(title+": "+content);
         BoardReqDTO boardReqDTO = BoardReqDTO.builder().title(title).content(content).build();
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new EntityNotFoundException("Member 객체가 없음"));
         Board board = boardRepository.save(boardReqDTO.toEntity(member));
@@ -152,14 +151,14 @@ public class BoardService {
         return board.getId();
     }
 
-    private void deleteExistingFiles(List<File> dbPhotoList) {
+    private void deleteExistingFiles(final List<File> dbPhotoList) {
         for (File dbPhoto : dbPhotoList) {
             fileUtils.deleteFile(dbPhoto);
             dbPhoto.updateDelete(true);
         }
     }
 
-    private void addNewFiles(Board board, List<MultipartFile> files) throws Exception {
+    private void addNewFiles(final Board board, final List<MultipartFile> files) throws Exception {
         List<File> newFiles = fileUtils.parseFileInfo(files);
         for (File file : newFiles) {
             board.addFile(fileRepository.save(file));

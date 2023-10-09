@@ -1,10 +1,8 @@
 package com.example.fureverhomes_project.entity;
 
-import com.example.fureverhomes_project.entity.enumClass.Sex;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 import javax.persistence.*;
 

@@ -27,8 +27,6 @@ function searchGet(page, species, sex, region){
         apiUrl += "&region=" + region;
     }
 
-    console.log(apiUrl);
-
     $.ajax({
         url: apiUrl,
         type: "GET",
@@ -36,8 +34,6 @@ function searchGet(page, species, sex, region){
         success: function (data, status, xhr) {
             let all_list = data.animals;
             let total = data.totalCount;
-
-            console.log(page)
 
             let dataBody = $("#animal-card");
             dataBody.empty();

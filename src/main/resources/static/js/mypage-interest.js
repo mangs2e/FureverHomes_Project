@@ -18,8 +18,6 @@ function adoptInterestGet() {
                 let name = data[i].name;
                 let animalId = data[i].animalId;
 
-                console.log(`name: ${name}, animalId: ${animalId}`)
-
                 let tr = $("<tr>", {style: "padding: 0;"});
 
                 let th = $("<th>", {
@@ -80,7 +78,6 @@ function adoptInterestGet() {
                         interestId : id
                     }),
                     success: function () {
-                        console.log("성공")
                         $("#modal-default-3").modal('hide'); // 모달 창 닫기
                         // 실행창 초기화
                         location.reload();

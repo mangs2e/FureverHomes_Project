@@ -115,8 +115,6 @@ public class MemberService {
 
         Member member = memberRepository.findByEmail(email);
         int getAuthCode = member.getEmail_auth();
-        System.out.println("입력받은 값"+authCode);
-        System.out.println("db안에 값"+getAuthCode);
 
         if (authCode.equals(String.valueOf(getAuthCode))) {
             member.updateEmailAuth(1);
@@ -141,7 +139,7 @@ public class MemberService {
     }
 
     //비밀번호 재설정 링크 전송
-    public Boolean sendLinkMail(final @RequestBody MailDTO mailDTO) throws MessagingException {
+    public Boolean sendLinkMail(final MailDTO mailDTO) throws MessagingException {
         String email = mailDTO.getEmail();
 
         Member member = memberRepository.findByEmail(email);

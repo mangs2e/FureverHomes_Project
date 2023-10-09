@@ -29,6 +29,7 @@ public class AnimalSearchService {
     private final AnimalRepository animalRepository;
     private final EntityManager em;
 
+    //동물 검색
     public AnimalPageDTO searchAnimal(final Map<String, String> requestparams, Pageable pageable) {
         AnimalSearchDTO animalSearchDTO = new AnimalSearchDTO();
         String species = requestparams.get("species");
@@ -54,11 +55,8 @@ public class AnimalSearchService {
         return new AnimalPageDTO(animalResDTO, animals.getTotalPages(), animals.getTotalElements());
     }
 
-
-
     //resDTO 변환
     private AnimalResDTO converToResDTO(final Animal animal) {
-        System.out.println("ResDTO 변환!");
         AnimalResDTO animalDTO =
                 new AnimalResDTO(animal.getId(), animal.getName(), animal.getRegion(), animal.getSex(), animal.getAge(), animal.getPicture(),
                         animal.getNeuter(), animal.getHealth_condition(), animal.getShelter_name(), animal.getShelter_tel(), animal.getRegiDate(), animal.getPersonality());

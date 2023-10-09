@@ -41,6 +41,7 @@ $(document).ready(function () {
         }
     });
 
+    //비밀번호 변경
     $("#change-password").click(function () {
 
         sessionStorage.removeItem("email");

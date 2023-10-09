@@ -1,5 +1,5 @@
 $(document).ready(function (){
-    boardSearchGet(1,null,null);
+    boardSearchGet(1,null,null); //검색창 정보 불러오기
 
     $("#search-form").submit(function (e){
         e.preventDefault();
@@ -22,8 +22,6 @@ function boardSearchGet(page, searchType, searchKeyword){
     if(searchKeyword !== null && searchKeyword !== "") {
         apiUrl += "&searchKeyword=" + searchKeyword;
     }
-
-    console.log(apiUrl);
 
     $.ajax({
         url: apiUrl,
@@ -81,14 +79,6 @@ function boardSearchGet(page, searchType, searchKeyword){
             alert("페이지를 불러오는데 실패했습니다.")
         }
     });
-}
-
-function formatLocalDateTime(date) {
-    let yymmdd = date.substring(0, 10)
-    let hour = date.substring(11, 13);
-    let minute = date.substring(14, 16);
-
-    return yymmdd + ' ' + hour + ':' + minute;
 }
 
 // 페이지 링크에 대한 클릭 이벤트 리스너 추가

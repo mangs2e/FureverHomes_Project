@@ -1,13 +1,9 @@
 $(document).ready(function() {
 
-
     $("#signin").click(function () {
 
         let email = $("#email").val();
         let password = $("#password").val();
-
-        console.log(email);
-        console.log(password);
 
         if (!email) {
             alert("이메일을 입력해주세요.");
@@ -27,7 +23,6 @@ $(document).ready(function() {
             }),
             async: false,
             success: function (data, status) {
-                alert("성공!")
                 location.href = "/fureverhomes/animal";
             },
             error: function (data, textStatus) {

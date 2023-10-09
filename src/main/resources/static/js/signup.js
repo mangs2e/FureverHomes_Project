@@ -78,13 +78,7 @@ $(document).ready(function() {
         }
     });
 
-// 파일 이름 바꾸기
-// $("#customFile").change(function () {
-//     fileValue = $("#customFile").val().split("\\");
-//     fileName = fileValue[fileValue.length - 1]; // 파일명
-//     $("#showFiles").text(fileName);
-// });
-
+   //회원가입
     $("#createAccount").click(function () {
         if (!emailCheck) {
             $("#email").focus();
@@ -132,8 +126,6 @@ $(document).ready(function() {
             success: function (data, status) {
                 let email = btoa(data);
                 sessionStorage.setItem("email", email);
-                alert("성공! 이메일 인증해주셈");
-                // location.replace("/fureverhomes/signup/emailAuth");
                 location.href ="/fureverhomes/signup/emailAuth";
             },
             error: function (data, textStatus) {

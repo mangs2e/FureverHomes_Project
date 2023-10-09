@@ -2,7 +2,6 @@ package com.example.fureverhomes_project.entity;
 
 import com.example.fureverhomes_project.entity.superClass.BaseEntity;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
