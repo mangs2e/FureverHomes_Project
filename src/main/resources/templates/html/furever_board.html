@@ -158,18 +158,49 @@
                                 </div>
                             </div>
                             <!--댓글-->
-                            <div class="row" id="reviewCard">
-                                <div class="card bg-white border-light p-4 mb-4 col-12" style="box-shadow: none">
+                            <div class="row" id="commentCard">
+                                <div class="card bg-white border-light p-4 mb-4 col-12" th:style="'box-shadow: none'">
                                     <div class="d-flex justify-content-between align-items-center mb-2">
                                         <span class="font-small">
-                                            <span class="font-weight-bold">작성자
+                                            <span class="font-weight-bold" id="comment_writer">작성자
                                             </span>
                                             <span class="ml-2">2023-09-15</span>
                                         </span>
+                                        <button class="btn mb-2 mr-2 btn-pill btn-outline-primary" type="button">
+                                        </button>
                                     </div>
-                                    <p class="m-0">우와 너무 귀엽네요~!</p>
+                                    <p class="m-0"></p>
                                 </div>
-                                
+                            </div>
+                            <div class="modal fade" id="modal-delete" tabindex="-1"
+                                 role="dialog" aria-labelledby="modal-default"
+                                 aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered"
+                                     role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h6 class="modal-title">댓글삭제</h6>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="mb-3 form-group">
+                                                    댓글을 삭제하겠습니까?
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" id="comment-delete"
+                                                    class="btn btn-sm btn-warning">
+                                                삭제
+                                            </button>
+                                            <button type="button"
+                                                    class="btn btn-link text-danger ml-auto"
+                                                    data-dismiss="modal" id="reset">
+                                                닫기
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <!--댓글 입력-->
                             <form method="post">
@@ -183,13 +214,13 @@
                                         <i class="star far fa-star text-gray" data-rating-value="5"></i>
                                     </span> -->
                                 </div>
-                                <textarea name="description" class="form-control border" rows="6" data-bind-characters-target="#charactersRemaining" maxlength="1000"></textarea>
+                                <textarea name="comment" id="comment" class="form-control border" rows="6" data-bind-characters-target="#charactersRemaining" maxlength="1000"></textarea>
                                 <div class="d-flex justify-content-between mt-3">
                                     <a th:href="@{/fureverhomes/board}" button type="button" class="btn btn-outline-warning animate-up-2">
                                         <span
                                         class="icon icon-xs ml-auto"><span
                                         class="fas fa-chevron-left"></span></span> 목록으로</a>
-                                    <button type="submit" class="btn btn-warning animate-up-2">등록</button>
+                                    <button type="button" class="btn btn-warning animate-up-2" id="comment-btn">등록</button>
                                 </div> 
                             </form>
                         </div>

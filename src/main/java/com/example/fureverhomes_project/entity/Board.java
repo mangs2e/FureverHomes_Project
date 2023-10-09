@@ -21,7 +21,11 @@ public class Board extends BaseEntity {
     private Member member; //연관관계 매핑 - 멤버 (작성자 필요)
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<File> files = new ArrayList<>();
+    private List<File> files = new ArrayList<>(); //연관관계 매핑 - 파일
+
+     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
+     @OrderBy("id asc")
+    private List<Comment> comments = new ArrayList<>(); //연관관계 매핑 - 댓글
 
     @Lob
     @Column(nullable = false)

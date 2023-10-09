@@ -6,18 +6,44 @@ let boardId = number;
 
 $(document).ready(function () {
     if (pathURI.includes("update")) {
-        doUpdateBoard();
+        doUpdateBoard(); //수정창 정보 불러오기
     } else {
-        doGetBoardView();
+        doGetBoardView(); //게시판 상세 정보 불러오기
     }
 
     $("#update-btn").click(function () {
-        putUpdateBoard();
+        putUpdateBoard(); //게시판 수정
     })
 
     $("#boardDelete-btn").click(function () {
-        deleteBoard();
+        deleteBoard(); //게시판 삭제
     });
+
+    //댓글 등록
+    $("#comment-btn").click(function () {
+        let comment = $("#comment").val();
+        let postURL = "/fureverhomes/board/{board_id}/comment".replace("{board_id}", boardId);
+
+        if (comment === null || comment === "") {
+            alert("댓글을 작성해주세요.");
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: postURL,
+            contentType: 'application/json',
+            data: JSON.stringify({
+                comment: comment
+            }),
+            success: function (data, status) {
+                location.reload();
+            },
+            error: function (data, textStatus) {
+                alert("댓글달기에 실패했습니다.");
+            }
+        });
+    })
 })
 
 function doGetBoardView() {
@@ -34,6 +60,8 @@ function doGetBoardView() {
             let writer = data.writer;
             let isLogin = data.equalLogin;
             let content = data.content;
+
+            //파일 조회
             if (data.files != null) {
                 let files_list = data.files;
                 let dataBody = $("#image");
@@ -64,7 +92,94 @@ function doGetBoardView() {
                 }
             }
 
-            console.log(isLogin)
+            //댓글 창 조회
+            let commentBody = $("#commentCard");
+            commentBody.empty();
+            if (data.comments != null) {
+                let comment_list = data.comments;
+                for (let i = 0; i < comment_list.length; i++) {
+
+                    let comments = comment_list[i];
+                    let comment_id = comments.id;
+                    let writer = comments.writer;
+                    let comment = comments.comment;
+                    let createDate = formatLocalDateTime(comments.createDate);
+                    let isLogin = comments.equalLogin;
+
+                    let div1 = $("<div>")
+                        .addClass("card bg-white border-light p-4 mb-4 col-12")
+                        .css("box-shadow", "none");
+
+                    let div2 = $("<div>")
+                        .addClass("d-flex justify-content-between align-items-center mb-2");
+
+                    let span = $("<span>")
+                        .addClass("font-small");
+
+                    let comment_writer = $("<span>")
+                        .addClass("font-weight-bold")
+                        .text(writer);
+
+                    let create_date = $("<span>")
+                        .addClass("ml-2")
+                        .text(createDate);
+
+                    let content = $("<p>")
+                        .addClass("m-0")
+                        .text(comment);
+
+                    let deleteBtn = $("<button>")
+                        .addClass("btn mb-2 mr-2 btn-pill btn-outline-primary")
+                        .attr("type", "button")
+                        .text("삭제")
+                        .attr("data-toggle", "modal")
+                        .attr("data-target", "#modal-delete")
+                        .on("click", function (event) {
+                            event.preventDefault();
+
+                            // 모달을 띄우기 위한 속성 설정
+                            $("#modal-delete").modal({
+                                show: true
+                            });
+
+                            $("#comment-delete").on("click", function (e) {
+                                e.preventDefault();
+                                commentDelete(comment_id);
+                            })
+                            function commentDelete(comment_id) {
+                                let deleteURL = "/fureverhomes/board/comment.delete";
+
+                                $.ajax({
+                                    type: "DELETE",
+                                    url: deleteURL,
+                                    contentType: "application/json",
+                                    data: JSON.stringify({
+                                        comment_id : comment_id
+                                    }),
+                                    success: function () {
+                                        $("#modal-delete").modal('hide'); // 모달 창 닫기
+                                        // 실행창 초기화
+                                        location.reload();
+                                    },
+                                    error: function (data) {
+                                        alert("Error!")
+                                    },
+                                    complete: function (data, textStatus) {
+                                    },
+                                });
+                            }
+                        });
+
+                    commentBody.append(div1);
+                    div1.append(div2, content);
+                    div2.append(span, deleteBtn);
+                    span.append(comment_writer, create_date);
+
+                    if (!isLogin) {
+                        $("#comment-del-btn").hide();
+                    }
+                }
+            }
 
             if (!isLogin) {
                 $("#board_menu").hide();
@@ -88,10 +203,6 @@ function formatLocalDateTime(date) {
     let minute = date.substring(14, 16);
 
     return yymmdd + ' ' + hour + ':' + minute;
-}
-
-function formatPathDate(date) {
-    return date.substring(0, 10).replace(/-/g, '');
 }
 
 function putUpdateBoard() {

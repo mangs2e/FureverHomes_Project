@@ -1,10 +1,7 @@
 package com.example.fureverhomes_project.service;
 
 import com.example.fureverhomes_project.component.FileUtils;
-import com.example.fureverhomes_project.dto.BoardPageDTO;
-import com.example.fureverhomes_project.dto.BoardReqDTO;
-import com.example.fureverhomes_project.dto.BoardResDTO;
-import com.example.fureverhomes_project.dto.FileDTO;
+import com.example.fureverhomes_project.dto.*;
 import com.example.fureverhomes_project.entity.Board;
 import com.example.fureverhomes_project.entity.File;
 import com.example.fureverhomes_project.entity.Member;
@@ -60,11 +57,13 @@ public class BoardService {
     @Transactional
     public BoardResDTO selectBoard(final Long boardId, final Long memberId) {
         Board board = boardRepository.findById(boardId).orElseThrow(() -> new EntityNotFoundException("Board 객체가 없음"));
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new EntityNotFoundException("Member 객체가 없음"));
         board.updateViews(); //조회하는 동시에 조회수 1 추가
         boardRepository.save(board);
         BoardResDTO boardResDTO = new BoardResDTO(board);
         boardResDTO.setFiles(board);
-        if (Objects.equals(memberId, board.getMember().getId())) {
+        boardResDTO.setComments(board);
+        if (board.getMember().equals(member)) {
             boardResDTO.setEqualLogin();
         }
         return boardResDTO;

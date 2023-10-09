@@ -1,16 +1,13 @@
 package com.example.fureverhomes_project.entity;
 
 import com.example.fureverhomes_project.entity.superClass.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString
-@Setter
+@NoArgsConstructor
 public class Comment extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,5 +24,13 @@ public class Comment extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member; //연관관계 매핑 - 멤버 (댓글 작성자 필요)
+
+    @Builder
+    public Comment(Long id, String comment, Board board, Member member) {
+        this.id = id;
+        this.comment = comment;
+        this.board = board;
+        this.member = member;
+    }
 
 }
