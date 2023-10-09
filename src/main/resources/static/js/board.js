@@ -1,6 +1,10 @@
 $(document).ready(function () {
     $(document).on("click", "#add-img-btn", function () {
         addFileUpload();
+    });
+
+    $(document).on("click", "#del-img-btn", function () {
+        $(this).closest(".file-upload-row").remove();
     })
 
     $("#create-btn").click(function () {

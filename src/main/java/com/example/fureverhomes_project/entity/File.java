@@ -30,6 +30,8 @@ public class File {
 
     private LocalDate createDate = LocalDate.now(); //생성 날짜
 
+    private Boolean isDelete = false; //삭제 여부
+
     @Builder
     public File(String original_name, String save_name, Long size, String file_path) {
         this.original_name = original_name;
@@ -43,5 +45,9 @@ public class File {
 
         if(!board.getFiles().contains(this))
             board.getFiles().add(this);
+    }
+
+    public void updateDelete(Boolean isDelete) {
+        this.isDelete = isDelete;
     }
 }

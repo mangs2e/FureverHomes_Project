@@ -4,6 +4,7 @@ import com.example.fureverhomes_project.component.FileUtils;
 import com.example.fureverhomes_project.dto.BoardPageDTO;
 import com.example.fureverhomes_project.dto.BoardReqDTO;
 import com.example.fureverhomes_project.dto.BoardResDTO;
+import com.example.fureverhomes_project.dto.FileDTO;
 import com.example.fureverhomes_project.entity.Board;
 import com.example.fureverhomes_project.entity.File;
 import com.example.fureverhomes_project.entity.Member;
@@ -15,11 +16,11 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import static com.example.fureverhomes_project.entity.QBoard.board;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
@@ -40,8 +41,6 @@ public class BoardService {
     private final FileUtils fileUtils;
     private final EntityManager em;
 
-    private String uploadDirectory = "";
-
     //게시글 등록
     @Transactional
     public Long insertBoard(final Long memberId, final Map<String, String> param, final List<MultipartFile> files) throws Exception{
@@ -52,12 +51,8 @@ public class BoardService {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new EntityNotFoundException("Member 객체가 없음"));
         Board board = boardRepository.save(boardReqDTO.toEntity(member));
 
-        List<File> fileList = fileUtils.parseFileInfo(files);
-        if (!fileList.isEmpty()) {
-            for (File file : fileList) {
-                board.addFile(fileRepository.save(file));
-            }
-        }
+        addNewFiles(board, files);
+
         return board.getId();
     }
 
@@ -119,5 +114,56 @@ public class BoardService {
             }
         }
         boardRepository.delete(board);
+    }
+
+    //게시글 수정
+    @Transactional
+    public Long updateBoard(final Map<String, String> param, final List<MultipartFile> files) throws Exception{
+        Long boardId = Long.valueOf(param.get("board_id"));
+        String title = param.get("title");
+        String content = param.get("content");
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> new EntityNotFoundException("Board 객체가 없음"));
+        // DB에 저장되어있는 파일 불러오기
+        List<File> dbPhotoList = board.getFiles();
+        // 새롭게 전달되어온 파일들의 목록을 저장할 List 선언
+        if(CollectionUtils.isEmpty(dbPhotoList)) { // DB에 아예 존재 x
+            if(!CollectionUtils.isEmpty(files)) { // 전달되어온 파일이 하나라도 존재
+                addNewFiles(board, files);
+            }
+        }
+        else {  // DB에 한 장 이상 존재
+            if(CollectionUtils.isEmpty(files)) { // 전달되어온 파일 아예 x
+                // 파일 삭제
+                deleteExistingFiles(dbPhotoList);
+            }
+            else {  // 전달되어온 파일 한 장 이상 존재
+                // 파일 삭제
+                deleteExistingFiles(dbPhotoList);
+                addNewFiles(board, files);
+            }
+        }
+        if (title != null) {
+            board.updateTitle(title);
+        }
+        if (content != null) {
+            board.updateContent(content);
+        }
+        boardRepository.save(board);
+
+        return board.getId();
+    }
+
+    private void deleteExistingFiles(List<File> dbPhotoList) {
+        for (File dbPhoto : dbPhotoList) {
+            fileUtils.deleteFile(dbPhoto);
+            dbPhoto.updateDelete(true);
+        }
+    }
+
+    private void addNewFiles(Board board, List<MultipartFile> files) throws Exception {
+        List<File> newFiles = fileUtils.parseFileInfo(files);
+        for (File file : newFiles) {
+            board.addFile(fileRepository.save(file));
+        }
     }
 }

@@ -9,13 +9,15 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class BoardReqDTO {
+    private Long boardId;
     private Long memberId;
     private String title;
     private String content;
     private String writer;
 
     @Builder
-    public BoardReqDTO(Long memberId, String title, String content) {
+    public BoardReqDTO(Long boardId, Long memberId, String title, String content) {
+        this.boardId = boardId;
         this.memberId = memberId;
         this.title = title;
         this.content = content;
@@ -27,6 +29,12 @@ public class BoardReqDTO {
                 .title(title)
                 .content(content)
                 .views(0).build();
+    }
+
+    public Board toEntity() {
+        return Board.builder()
+                .title(title)
+                .content(content).build();
     }
 
     public void boardSearchKeyword(String searchType, String searchKeyword) {

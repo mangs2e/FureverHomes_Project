@@ -110,10 +110,6 @@ function pagination(currentPage, total) { //(페이지,데이터갯수)
     let startPage = Math.ceil(currentPage / pageGroupSize) * pageGroupSize - pageGroupSize + 1;
     let endPage = Math.min(startPage + pageGroupSize - 1, totalPages);
 
-    if(total === 0) {
-        alert("검색 결과가 없습니다.")
-        location.reload();
-    }
     let pagination = $(".pagination");
     pagination.empty();
 

@@ -94,12 +94,12 @@
                         <h2 class="h6 mt-2">이미지 업로드</h2>
                         <div id="fileForm">
                             <div class="file-upload-row d-flex justify-content-between align-items-center mt-2">
-<!--                        <div class="d-flex justify-content-between align-items-center mt-2" id="fileForm">-->
-                                <div class="custom-file2">
+                                <div class="col-10 custom-file2">
                                     <input id="customFile" type="file" class="custom-file-input2" accept=".jpg,.jpeg,.png">
                                     <label class="custom-file-label" for="customFile" id="show-files">Choose file</label>
                                 </div>
-                                <button type="button" class="btn btn-warning mt-1 ml-1" style="height: calc(1.5em + 1.2625rem);" id="add-img-btn">추가</button>
+                                <button type="button" class="btn btn-warning mt-1 ml-1" th:style="'height: calc(1.5em + 1.2625rem);'" id="add-img-btn">추가</button>
+                                <button type="button" class="btn btn-danger mt-1 ml-0" th:style="'height: calc(1.5em + 1.2625rem);'" id="del-img-btn">삭제</button>
                             </div>
                         </div>
                         <small class="text-gray font-weight-light font-xs d-block mt-2">이미지는 최대 10MB까지 가능하며 jpeg, jpg, png만 올릴 수 있습니다.</small>

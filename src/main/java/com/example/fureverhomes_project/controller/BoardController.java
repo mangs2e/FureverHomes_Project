@@ -45,7 +45,6 @@ public class BoardController {
         return "html/furever_board_edit";}
 
 
-
     @RestController
     @RequestMapping("/fureverhomes")
     public class BoardRestController {
@@ -84,6 +83,14 @@ public class BoardController {
         public ResponseEntity<Object> deleteBoard(@PathVariable("board_id") Long boardId) {
             boardService.deleteBoard(boardId);
             return ResponseEntity.ok().build();
+        }
+
+        //게시글 수정
+        @PostMapping("/board.update")
+        public ResponseEntity<Object> updateBoard(@RequestPart(value = "customFile", required = false)List<MultipartFile> files,
+                                                  @RequestParam Map<String, String> params) throws Exception {
+            Long id = boardService.updateBoard(params, files);
+            return ResponseEntity.ok(id);
         }
     }
 }

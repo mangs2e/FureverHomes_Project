@@ -8,6 +8,7 @@ public class FileDTO {
     private String originalFileName;
     private String saveFileName;
     private String filePath;
+    private Boolean isDelete;
     private Long fileSize;
 
     public FileDTO(String originalFileName, String saveFileName, String filePath, Long fileSize) {
@@ -21,6 +22,7 @@ public class FileDTO {
         this.originalFileName = file.getOriginal_name();
         this.saveFileName = file.getSave_name();
         this.filePath = file.getFile_path();
+        this.isDelete = file.getIsDelete();
     }
 
     public File toEntity(File file) {
