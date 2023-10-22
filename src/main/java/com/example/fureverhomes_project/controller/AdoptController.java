@@ -40,7 +40,8 @@ public class AdoptController {
 
     //입양 신청 취소
     @PutMapping("/mypage/adopt.cancel")
-    public void putAdopt(@RequestBody Map<String, String> params) {
+    public ResponseEntity<Object> putAdopt(@RequestBody Map<String, String> params) {
         adoptService.putAdopt(params);
+        return ResponseEntity.ok().build();
     }
 }

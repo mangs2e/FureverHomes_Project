@@ -128,3 +128,11 @@ function pagination(currentPage, total) { //(페이지,데이터갯수)
                     </li>`);
     }
 }
+
+function formatLocalDateTime(date) {
+    let yymmdd = date.substring(0, 10)
+    let hour = date.substring(11, 13);
+    let minute = date.substring(14, 16);
+
+    return yymmdd + ' ' + hour + ':' + minute;
+}
