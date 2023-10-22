@@ -47,7 +47,7 @@ $(document).ready(function () {
         });
     })
 
-    // 튜터 인증 파일 이름 바꾸기
+    // 파일 이름 바꾸기
     $(document).on("change", "#customFile", function () {
         let fileValue = $(this).val().split("\\");
         let fileName = fileValue[fileValue.length - 1]; // 파일명
