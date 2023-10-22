@@ -22,7 +22,7 @@ public class File {
 
     private String original_name; //원본 이름
 
-    private String save_name; //저장 이용
+    private String save_name; //저장 이름
 
     private Long size; //파일 사이즈
 
